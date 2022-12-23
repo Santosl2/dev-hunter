@@ -26,4 +26,11 @@ if (process.env.NODE_ENV === "development") {
   clientPromise = client.connect();
 }
 
+export async function connectDB() {
+  const connectMongo = await clientPromise;
+  const data = connectMongo.db("devfinder");
+
+  return data;
+}
+
 export default clientPromise;

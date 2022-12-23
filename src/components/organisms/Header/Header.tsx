@@ -3,7 +3,7 @@
 import { useCallback } from "react";
 import { AiOutlineGithub } from "react-icons/ai";
 
-import { signIn, useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 import { UserPicture } from "@/components/atoms";
 
@@ -28,7 +28,13 @@ export function Header() {
         </a>
         <div className="flex items-center md:order-2">
           {data?.user ? (
-            <UserPicture />
+            <>
+              <UserPicture />
+              <div className="r-4 mx-4 h-7 w-2 space-y-2 border-r border-gray-200" />
+              <Button $variant="green" $size="sm" onClick={() => signOut()}>
+                Sair
+              </Button>
+            </>
           ) : (
             <Button
               $variant="github"

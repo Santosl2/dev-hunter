@@ -17,6 +17,7 @@ function IconElement({ icon }: { icon: React.ReactElement }) {
 
 export function Button({
   $variant = "blue",
+  $size = "md",
   rounded = false,
   type = "button",
   iconLeft = null,
@@ -28,6 +29,7 @@ export function Button({
   return (
     <ButtonStyled
       type={type}
+      $size={$size}
       $variant={$variant}
       rounded={rounded}
       onClick={onClick}

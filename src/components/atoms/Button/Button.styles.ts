@@ -1,6 +1,10 @@
 import tw from "tailwind-styled-components";
 
-import { ButtonCustomProps, ButtonStylesVariantObject } from "./Button.types";
+import {
+  ButtonCustomProps,
+  ButtonStylesSizeObject,
+  ButtonStylesVariantObject,
+} from "./Button.types";
 
 const ButtonModifiers: ButtonStylesVariantObject = {
   blue: " bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800",
@@ -11,17 +15,22 @@ const ButtonModifiers: ButtonStylesVariantObject = {
     "bg-[#24292F] hover:bg-[#24292F]/90 focus:ring-4 focus:ring-[#24292F]/50 px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30",
 };
 
+const SizeModifiers: ButtonStylesSizeObject = {
+  sm: "text-xs px-3 py-1.5",
+  md: "text-sm px-5 py-2.5",
+  lg: "text-base px-7 py-3.5",
+};
+
 export const Button = tw.button<ButtonCustomProps>`
     text-white
     font-medium 
     text-sm
     px-5 
     py-2.5 
-    mr-2 
-    mb-2 
     focus:outline-none
     rounded-sm
 
     ${({ rounded }) => rounded && "rounded-full"}
     ${({ $variant }) => $variant && ButtonModifiers[$variant]}
+    ${({ $size }) => $size && SizeModifiers[$size]}
 `;
