@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import { createSlice } from "@reduxjs/toolkit";
 
 import { FILTERS_SLICE_NAME } from "@/shared/constants";
