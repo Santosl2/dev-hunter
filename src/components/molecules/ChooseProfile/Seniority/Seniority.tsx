@@ -9,7 +9,7 @@ export function Seniority() {
           key={seniority.id}
           title={seniority.title}
           $color={seniority.color}
-          isCategory={false}
+          type="seniorities"
         />
       ))}
     </ul>

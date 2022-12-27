@@ -5,11 +5,18 @@ import React from "react";
 import { Button as ButtonStyled } from "./Button.styles";
 import { ButtonProps } from "./Button.types";
 
-function IconElement({ icon }: { icon: React.ReactElement }) {
+function IconElement({
+  icon,
+  pos,
+}: {
+  icon: React.ReactElement;
+  pos: "right" | "left";
+}) {
   return (
     <span className="mx-2">
       {React.cloneElement(icon, {
         size: 18,
+        "data-testid": `icon-${pos}`,
       })}
     </span>
   );
@@ -35,9 +42,9 @@ export function Button({
       onClick={onClick}
       {...props}
     >
-      {iconLeft && <IconElement icon={iconLeft} />}
+      {iconLeft && <IconElement icon={iconLeft} pos="left" />}
       {children}
-      {iconRight && <IconElement icon={iconRight} />}
+      {iconRight && <IconElement icon={iconRight} pos="right" />}
     </ButtonStyled>
   );
 }

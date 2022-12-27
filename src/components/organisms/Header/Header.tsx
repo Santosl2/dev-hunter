@@ -10,7 +10,7 @@ import { UserPicture } from "@/components/atoms";
 import { Button } from "../../atoms/Button/Button";
 
 export function Header() {
-  const { data, status } = useSession();
+  const { data } = useSession();
 
   const onSignIn = useCallback(() => {
     signIn("github");

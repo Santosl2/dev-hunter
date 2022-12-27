@@ -3,3 +3,5 @@ export type FiltersStateProps = {
   seniorities: string[];
   contractTypes: string[];
 };
+
+export type FiltersStateKeys = keyof FiltersStateProps;

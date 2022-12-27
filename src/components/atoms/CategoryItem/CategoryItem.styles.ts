@@ -5,7 +5,7 @@ import {
   CategoryItemStylesVariantObject,
 } from "./CategoryItem.types";
 
-const CategoryItemModifiers: CategoryItemStylesVariantObject = {
+export const CategoryItemModifiers: CategoryItemStylesVariantObject = {
   red: "bg-red-200 text-red-600",
   blue: "bg-blue-200 text-blue-600",
   yellow: "bg-yellow-200 text-yellow-600",
