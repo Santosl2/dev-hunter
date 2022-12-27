@@ -16,6 +16,9 @@ export const authOptions: AuthOptions = {
     async signIn({ user, account, profile }) {
       const { login, bio, location, name, avatar_url } = profile as any;
 
+      const client = await connectDB();
+      const collectionUsers = client.collection("users");
+
       const userAlreadyExists = await collectionUsers.findOne({
         login,
       });
