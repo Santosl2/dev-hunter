@@ -11,8 +11,11 @@ import type { AppProps } from "next/app";
 import { Header } from "@/components/organisms/Header/Header";
 
 import "../styles/global.css";
+import { UserInfoMultiStep as UserInfoMultiStepModal } from "@/components/organisms/Modals";
+import { MultiStepProvider } from "@/shared/contexts";
 import { queryClient } from "@/shared/services/queryClient";
 import { store } from "@/shared/store";
+import { MissingData } from "@/components/molecules/MissingData/MissingData";
 
 function MyApp({ Component, pageProps, ...rest }: AppProps) {
   return (
@@ -21,6 +24,13 @@ function MyApp({ Component, pageProps, ...rest }: AppProps) {
         <SessionProvider refetchOnWindowFocus={false}>
           <Header />
           <Component {...pageProps} />
+
+          <MissingData />
+
+          <MultiStepProvider>
+            <UserInfoMultiStepModal />
+          </MultiStepProvider>
+
           <ReactQueryDevtools />
         </SessionProvider>
       </Provider>

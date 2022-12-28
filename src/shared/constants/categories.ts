@@ -48,3 +48,7 @@ export const CATEGORIES: Categories[] = [
     color: "emerald",
   },
 ];
+
+export const CATEGORIES_IDS = CATEGORIES.map((category) =>
+  category.id.toString()
+);

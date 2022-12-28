@@ -1,6 +1,14 @@
 import { HTMLAttributes } from "react";
 
-export type ButtonVariants = "blue" | "green" | "dark" | "github";
+export const ButtonVariantArray = [
+  "blue",
+  "green",
+  "dark",
+  "github",
+  "yellow",
+] as const;
+
+export type ButtonVariants = typeof ButtonVariantArray[number];
 export type ButtonSizes = "sm" | "md" | "lg";
 
 export type VariantAndSize = {

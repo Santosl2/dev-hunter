@@ -15,13 +15,13 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const client = await connectDB();
     const returnData = await client
       .collection("users")
-      .find({})
+      .find({
+        name: session.user.name,
+      })
       .limit(10)
       .toArray();
 
-    return res.json({
-      rows: returnData,
-    });
+    return res.json(returnData[0]);
   } catch (e) {
     console.error(e);
   }

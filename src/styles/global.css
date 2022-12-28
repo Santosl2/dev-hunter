@@ -6,3 +6,10 @@ body,
 html {
   @apply bg-[#F6F7FA];
 }
+
+#react-select-2-input:focus,
+[type="text"]:focus {
+  box-shadow: none !important;
+  outline: none !important;
+  border: none !important;
+}

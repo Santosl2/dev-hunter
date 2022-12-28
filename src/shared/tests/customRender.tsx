@@ -31,9 +31,10 @@ type CustomRenderOptionsProps = {
 
 export const customRender = (
   component: ReactNode,
-  options?: CustomRenderOptionsProps = {} as CustomRenderOptionsProps
+  options?: CustomRenderOptionsProps
 ): CustomRenderReturn => {
-  const { initialState, withMockedSession = true } = options;
+  const { initialState, withMockedSession = true } =
+    options || ({} as CustomRenderOptionsProps);
 
   const store = createTestStore(initialState);
   const session = withMockedSession ? MOCKED_SESSION_USER : ({} as Session);

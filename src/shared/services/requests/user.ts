@@ -1,5 +1,7 @@
+import { User } from "@/shared/interfaces/user";
+
 import { api } from "../api";
 
 export function getUserInfo() {
-  return api.get("/users/me");
+  return api.get<User>("/users/me");
 }

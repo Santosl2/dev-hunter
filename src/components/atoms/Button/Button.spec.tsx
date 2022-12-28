@@ -2,60 +2,13 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { BsHouse } from "react-icons/bs";
 import { Button } from "./Button";
 import { ButtonModifiers } from "./Button.styles";
+import { ButtonVariantArray } from "./Button.types";
 
 describe("<Button/>", () => {
   it("should be able to render correctly", () => {
     render(<Button>Test</Button>);
 
     expect(screen.getByText("Test")).toBeInTheDocument();
-  });
-
-  it("should be able to render with correct color blue theme", () => {
-    render(<Button $variant="blue">Test</Button>);
-
-    const buttonSelector = screen.getByText("Test");
-
-    expect(buttonSelector).toBeInTheDocument();
-
-    ButtonModifiers.blue.split(" ").forEach((modifier) => {
-      expect(buttonSelector.classList).toContain(modifier);
-    });
-  });
-
-  it("should be able to render with correct color green theme", () => {
-    render(<Button $variant="green">Test</Button>);
-
-    const buttonSelector = screen.getByText("Test");
-
-    expect(buttonSelector).toBeInTheDocument();
-
-    ButtonModifiers.green.split(" ").forEach((modifier) => {
-      expect(buttonSelector.classList).toContain(modifier);
-    });
-  });
-
-  it("should be able to render with correct color dark theme", () => {
-    render(<Button $variant="dark">Test</Button>);
-
-    const buttonSelector = screen.getByText("Test");
-
-    expect(buttonSelector).toBeInTheDocument();
-
-    ButtonModifiers.dark.split(" ").forEach((modifier) => {
-      expect(buttonSelector.classList).toContain(modifier);
-    });
-  });
-
-  it("should be able to render with correct color github theme", () => {
-    render(<Button $variant="github">Test</Button>);
-
-    const buttonSelector = screen.getByText("Test");
-
-    expect(buttonSelector).toBeInTheDocument();
-
-    ButtonModifiers.github.split(" ").forEach((modifier) => {
-      expect(buttonSelector.classList).toContain(modifier);
-    });
   });
 
   it("should be able to render with left icon", () => {
@@ -106,5 +59,22 @@ describe("<Button/>", () => {
     fireEvent.click(buttonSelector);
 
     expect(onClick).toHaveBeenCalled();
+  });
+
+  it.todo("should be able to render with rounded style");
+
+  it.todo("should be able to render with correct size");
+
+  ButtonVariantArray.map((variant) => {
+    it(`should be able to render with correct color ${variant} theme`, () => {
+      render(<Button $variant={variant}>Test</Button>);
+      const buttonSelector = screen.getByText("Test");
+
+      expect(buttonSelector).toBeInTheDocument();
+
+      ButtonModifiers[variant].split(" ").forEach((modifier) => {
+        expect(buttonSelector.classList).toContain(modifier);
+      });
+    });
   });
 });
