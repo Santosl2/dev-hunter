@@ -1,5 +1,4 @@
-import { Home } from "@/components";
-import { ChooseProfile } from "@/components/templates/Home/ChooseProfile";
+import { ChooseProfile, Home } from "@/components";
 
 export default function Page() {
   return (

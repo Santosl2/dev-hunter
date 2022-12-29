@@ -1,27 +1,31 @@
-import { Modal as ModalFlowbite } from "flowbite-react";
-import { useSession } from "next-auth/react";
+import { Suspense } from "react";
 
-import { CATEGORIES } from "@/shared/constants/categories";
+import { Modal as ModalFlowbite } from "flowbite-react";
+import { AnimatePresence } from "framer-motion";
+import { useSession } from "next-auth/react";
+import dynamic from "next/dynamic";
+
 import { ModalEnumTypes } from "@/shared/constants/enums";
-import { SENIORITIES } from "@/shared/constants/seniorities";
 import { useModals } from "@/shared/hooks/useModals";
 import { useMultiStep } from "@/shared/hooks/useMultiStep";
 
-import { StepOne } from "./Steps/StepOne";
-
-const options = CATEGORIES.map((cat) => {
-  return {
-    value: cat.id.toString(),
-    label: cat.title,
-  };
-});
-
-const optionsSeniority = SENIORITIES.map((sen) => {
-  return {
-    value: sen.id.toString(),
-    label: sen.title,
-  };
-});
+const dynamicSteps = {
+  1: dynamic(() =>
+    import("../../../molecules/UserInfoMultiSteps/StepOne/StepOne").then(
+      (mod) => mod.StepOne
+    )
+  ),
+  2: dynamic(() =>
+    import("../../../molecules/UserInfoMultiSteps/StepTwo/StepTwo").then(
+      (mod) => mod.StepTwo
+    )
+  ),
+  3: dynamic(() =>
+    import("../../../molecules/UserInfoMultiSteps/StepThree/StepThree").then(
+      (mod) => mod.StepThree
+    )
+  ),
+};
 
 export function UserInfoMultiStep() {
   const { actualModal, closeModal } = useModals();
@@ -34,11 +38,23 @@ export function UserInfoMultiStep() {
 
   if (!canRenderModal) return null;
 
+  const Component =
+    dynamicSteps[currentStep as keyof typeof dynamicSteps] ?? dynamicSteps[1];
+
   return (
-    <ModalFlowbite show onClose={closeModal} popup size="lg">
+    <ModalFlowbite show onClose={closeModal} popup size="xl">
       <ModalFlowbite.Header />
       <ModalFlowbite.Body>
-        {currentStep === 1 && <StepOne />}
+        <div className="text-gray-600">
+          <small className="mb-3 font-semibold font-poppins">
+            Etapa {currentStep} de 3
+          </small>
+          <AnimatePresence>
+            <Suspense fallback={<>Loading...</>}>
+              <Component />
+            </Suspense>
+          </AnimatePresence>
+        </div>
       </ModalFlowbite.Body>
     </ModalFlowbite>
   );

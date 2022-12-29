@@ -22,3 +22,17 @@ export type Categories = {
 export type StoreType = typeof store;
 type StateType = typeof store.getState;
 export type AppState = ReturnType<StateType>;
+
+export type LocalStorageSteps = {
+  stepOne: {
+    seniority: number;
+    skills: string[];
+  };
+  stepTwo: {
+    bio: string;
+  };
+  stepThree: {
+    linkedin: string;
+    github: string;
+  };
+};

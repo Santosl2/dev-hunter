@@ -9,6 +9,7 @@ type MultiStepContextProps = {
   prevStep: () => void;
 
   setSteps: (steps: number) => void;
+  validateStepAndGoNext: (data: any) => void;
   reset: () => void;
 };
 
