@@ -4,14 +4,14 @@ import { motion } from "framer-motion";
 import { useSession } from "next-auth/react";
 
 import { Button, Select } from "@/components/atoms";
-import { CATEGORIES } from "@/shared/constants/categories";
 import { SENIORITIES } from "@/shared/constants/seniorities";
+import { SKILLS } from "@/shared/constants/skills";
 import { useMultiStep } from "@/shared/hooks";
 import { baseAnimationVariant } from "@/shared/variants";
 
 import { useStepOne } from "./hooks";
 
-const options = CATEGORIES.map((cat) => {
+const options = SKILLS.map((cat) => {
   return {
     value: cat.id.toString(),
     label: cat.title,

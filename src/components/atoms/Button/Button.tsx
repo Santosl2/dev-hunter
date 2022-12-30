@@ -25,7 +25,7 @@ function IconElement({
 export function Button({
   $variant = "blue",
   $size = "md",
-  rounded = false,
+  rounded = "false",
   type = "button",
   iconLeft = null,
   iconRight = null,

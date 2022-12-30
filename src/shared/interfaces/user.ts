@@ -10,7 +10,8 @@ export type User = {
   location: string;
   bio: string;
   seniority?: string;
-  categories?: string[];
+  skills?: string[];
 };
 
 export type CreateUser = z.infer<typeof apiUserInfoMultiStepSchema>;
+export type UserInfo = Omit<CreateUser, "bio">;

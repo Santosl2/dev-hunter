@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { AppState } from "@/shared/interfaces";
 import {
-  addCategory,
+  addSkill,
   addSeniority,
   removeCategory,
   removeSeniority,
@@ -15,8 +15,8 @@ export function useFilters() {
 
   const actions = useMemo(
     () => ({
-      addCategory: (title: string) => {
-        dispatch(addCategory(title));
+      addSkill: (title: string) => {
+        dispatch(addSkill(title));
       },
       addSeniority: (title: string) => {
         dispatch(addSeniority(title));

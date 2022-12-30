@@ -1,9 +1,9 @@
-import { CreateUser, User } from "@/shared/interfaces/user";
+import { CreateUser, UserInfo } from "@/shared/interfaces/user";
 
 import { api } from "../api";
 
 export function getUserInfo() {
-  return api.get<User>("/users/me");
+  return api.get<UserInfo>("/users/me");
 }
 
 export function createUserInfo(data: CreateUser) {

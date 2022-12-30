@@ -6,7 +6,7 @@ import { FiltersStateProps } from "@/shared/interfaces/states";
 import { filtersReducer } from "./reducers";
 
 const initialState: FiltersStateProps = {
-  categories: [],
+  skills: [],
   seniorities: [],
   contractTypes: [],
 };
@@ -17,6 +17,6 @@ const filtersSlice = createSlice({
   reducers: filtersReducer,
 });
 
-export const { addCategory, addSeniority, removeCategory, removeSeniority } =
+export const { addSkill, addSeniority, removeCategory, removeSeniority } =
   filtersSlice.actions;
 export const { reducer } = filtersSlice;

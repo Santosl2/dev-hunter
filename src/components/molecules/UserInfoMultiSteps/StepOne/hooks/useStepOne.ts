@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
 
-import { CATEGORIES } from "@/shared/constants/categories";
 import { SENIORITIES } from "@/shared/constants/seniorities";
+import { SKILLS } from "@/shared/constants/skills";
 import { useMultiStep } from "@/shared/hooks";
 
 import { StateProps } from "../StepOne.types";
@@ -14,7 +14,7 @@ export function useStepOne() {
       const defaultValue = storage.stepOne.skills.map((id) => {
         return {
           value: id,
-          label: CATEGORIES.find((cat) => cat.id === Number(id))?.title,
+          label: SKILLS.find((cat) => cat.id === Number(id))?.title,
         };
       });
 

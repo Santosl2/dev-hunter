@@ -10,3 +10,5 @@ export const queryClient = new QueryClient({
     },
   },
 });
+
+export const queryClientTest = new QueryClient();

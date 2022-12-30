@@ -3,11 +3,13 @@ import { ReactNode } from "react";
 import { Provider } from "react-redux";
 
 import { configureStore } from "@reduxjs/toolkit";
+import { QueryClientProvider } from "@tanstack/react-query";
 import { render } from "@testing-library/react";
 import { Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 
 import { AppState, StoreType } from "../interfaces";
+import { queryClientTest } from "../services/queryClient";
 import { combinedReducer } from "../store/modules";
 import { MOCKED_SESSION_USER } from "./mock";
 
@@ -40,11 +42,13 @@ export const customRender = (
   const session = withMockedSession ? MOCKED_SESSION_USER : ({} as Session);
 
   const renderedComponent = render(
-    <Provider store={store}>
-      <SessionProvider refetchOnWindowFocus={false} session={session}>
-        {component}
-      </SessionProvider>
-    </Provider>
+    <QueryClientProvider client={queryClientTest}>
+      <Provider store={store}>
+        <SessionProvider refetchOnWindowFocus={false} session={session}>
+          {component}
+        </SessionProvider>
+      </Provider>
+    </QueryClientProvider>
   );
 
   return {

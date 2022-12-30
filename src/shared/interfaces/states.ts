@@ -1,5 +1,5 @@
 export type FiltersStateProps = {
-  categories: string[];
+  skills: string[];
   seniorities: string[];
   contractTypes: string[];
 };
