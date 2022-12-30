@@ -1,49 +1,32 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { useState } from "react";
 
-import { motion, Variants } from "framer-motion";
+import { motion } from "framer-motion";
 
 import { Button } from "@/components/atoms";
-import { MULTI_STEP_STORAGE_KEY } from "@/shared/constants/storage";
-import { useUserInfo } from "@/shared/hooks";
-import { useLocalStorage } from "@/shared/hooks/useLocalStorage";
-import { useMultiStep } from "@/shared/hooks/useMultiStep";
-import { LocalStorageSteps } from "@/shared/interfaces";
+import { useUserInfo, useMultiStep } from "@/shared/hooks";
+import { baseAnimationVariant } from "@/shared/variants";
 
 export function StepTwo() {
   const { data } = useUserInfo();
 
-  const { validateStepAndGoNext, prevStep } = useMultiStep();
+  const { validateStepAndInsertStore, nextStep, prevStep, storage } =
+    useMultiStep();
 
   const userBio = data?.data.bio;
 
-  const { storage } = useLocalStorage<LocalStorageSteps>(
-    MULTI_STEP_STORAGE_KEY,
-    {} as LocalStorageSteps
-  );
-
   const [bio, setBio] = useState(() => {
-    if (storage?.stepTwo?.bio) {
-      return storage?.stepTwo?.bio;
-    }
-
-    return userBio ?? "";
+    return storage?.stepTwo?.bio ?? userBio ?? "";
   });
 
   const formData = {
     bio,
   };
 
-  const variants: Variants = {
-    initial: {
-      opacity: 0,
-    },
-    animate: {
-      opacity: 1,
-    },
-    exit: {
-      opacity: 0,
-    },
+  const handleSubmit = () => {
+    if (validateStepAndInsertStore(formData)) {
+      nextStep();
+    }
   };
 
   return (
@@ -51,7 +34,7 @@ export function StepTwo() {
       className="flex gap-3 flex-col"
       initial="initial"
       animate="animate"
-      variants={variants}
+      variants={baseAnimationVariant}
     >
       <div>
         <label className="mb-2" htmlFor="step-two-bio">
@@ -61,6 +44,9 @@ export function StepTwo() {
           id="step-two-bio"
           defaultValue={bio}
           className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-green-500 focus:border-green-500  resize-none h-36"
+          onChange={(e) => {
+            setBio(e.target.value);
+          }}
         />
       </div>
 
@@ -69,10 +55,7 @@ export function StepTwo() {
         <Button $variant="yellow" onClick={() => prevStep()}>
           Voltar
         </Button>
-        <Button
-          $variant="green"
-          onClick={() => validateStepAndGoNext(formData)}
-        >
+        <Button $variant="green" onClick={handleSubmit} disabled={!bio}>
           Continuar
         </Button>
       </div>

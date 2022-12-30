@@ -31,6 +31,7 @@ export function Button({
   iconRight = null,
   onClick,
   children,
+  disabled = false,
   ...props
 }: ButtonProps) {
   return (
@@ -40,6 +41,7 @@ export function Button({
       $variant={$variant}
       rounded={rounded}
       onClick={onClick}
+      disabled={disabled}
       {...props}
     >
       {iconLeft && <IconElement icon={iconLeft} pos="left" />}

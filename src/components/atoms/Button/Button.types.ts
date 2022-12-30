@@ -23,6 +23,7 @@ export type ButtonCustomProps = VariantAndSize & {
   iconLeft?: React.ReactNode;
   iconRight?: React.ReactNode;
   children: React.ReactNode;
+  disabled?: boolean;
 };
 
 export type ButtonProps = HTMLAttributes<HTMLButtonElement> & ButtonCustomProps;

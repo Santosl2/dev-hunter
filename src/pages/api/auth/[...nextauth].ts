@@ -1,3 +1,5 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable camelcase */
 import NextAuth, { AuthOptions } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
@@ -39,15 +41,14 @@ export const authOptions: AuthOptions = {
     async session({ session }) {
       const client = await connectDB();
       const collectionUsers = client.collection("users");
-
       const { user } = session;
 
       if (user) {
-        const userMongo = await collectionUsers.findOne({ login: user.name });
+        const userMongo = await collectionUsers.findOne({ name: user.name });
 
         return {
           ...session,
-          ...userMongo,
+          id: userMongo!._id,
         };
       }
 

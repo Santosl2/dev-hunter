@@ -6,8 +6,7 @@ import { useSession } from "next-auth/react";
 import dynamic from "next/dynamic";
 
 import { ModalEnumTypes } from "@/shared/constants/enums";
-import { useModals } from "@/shared/hooks/useModals";
-import { useMultiStep } from "@/shared/hooks/useMultiStep";
+import { useModals, useMultiStep } from "@/shared/hooks";
 
 const dynamicSteps = {
   1: dynamic(() =>

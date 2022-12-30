@@ -36,8 +36,8 @@ export function MultiStepProvider({ children }: { children: React.ReactNode }) {
     [steps]
   );
 
-  const validateStepAndGoNext = useCallback(
-    async (data: any) => {
+  const validateStepAndInsertStore = useCallback(
+    (data: any) => {
       const stepsObj = {
         1: "stepOne",
         2: "stepTwo",
@@ -46,28 +46,28 @@ export function MultiStepProvider({ children }: { children: React.ReactNode }) {
 
       const actualStep: string =
         stepsObj[currentStep as keyof typeof stepsObj] ?? "stepOne";
+
       const newStorageData = {
         ...storage,
         [actualStep]: data,
       };
 
-      try {
-        userInfoMultiStepSchema.parse(newStorageData);
+      const schema =
+        userInfoMultiStepSchema.shape[
+          actualStep as keyof typeof userInfoMultiStepSchema.shape
+        ];
 
-        setStorage(newStorageData);
+      const parse = schema.safeParse(data);
 
-        nextStep();
-      } catch (e) {
-        console.log(e);
-      }
+      if (parse.success) setStorage(newStorageData);
+
+      return parse.success;
     },
-    [currentStep, nextStep, setStorage, storage]
+    [currentStep, setStorage, storage]
   );
 
   const getUserCurrentStep = useCallback(() => {
     const keys = Object.keys(storage);
-
-    console.log(storage);
 
     setCurrentStep(keys.length + 1);
   }, [storage]);
@@ -80,12 +80,13 @@ export function MultiStepProvider({ children }: { children: React.ReactNode }) {
     () => ({
       currentStep,
       steps,
+      storage,
       setCurrentStep: setCurrentStepMemoized,
       nextStep,
       prevStep,
       setSteps,
       reset,
-      validateStepAndGoNext,
+      validateStepAndInsertStore,
     }),
     [
       currentStep,
@@ -94,7 +95,8 @@ export function MultiStepProvider({ children }: { children: React.ReactNode }) {
       reset,
       steps,
       setCurrentStepMemoized,
-      validateStepAndGoNext,
+      validateStepAndInsertStore,
+      storage,
     ]
   );
 

@@ -1,12 +1,13 @@
 /* eslint-disable no-use-before-define */
 
-import { motion, Variants } from "framer-motion";
+import { motion } from "framer-motion";
 import { useSession } from "next-auth/react";
 
 import { Button, Select } from "@/components/atoms";
 import { CATEGORIES } from "@/shared/constants/categories";
 import { SENIORITIES } from "@/shared/constants/seniorities";
-import { useMultiStep } from "@/shared/hooks/useMultiStep";
+import { useMultiStep } from "@/shared/hooks";
+import { baseAnimationVariant } from "@/shared/variants";
 
 import { useStepOne } from "./hooks";
 
@@ -24,21 +25,10 @@ const optionsSeniority = SENIORITIES.map((sen) => {
   };
 });
 
-const variants: Variants = {
-  initial: {
-    opacity: 0,
-  },
-  animate: {
-    opacity: 1,
-  },
-  exit: {
-    opacity: 0,
-  },
-};
-
 export function StepOne() {
-  const { validateStepAndGoNext } = useMultiStep();
-  const { seniority, setSeniority, setSkills, skills } = useStepOne();
+  const { validateStepAndInsertStore, nextStep } = useMultiStep();
+  const { seniority, setSeniority, setSkills, skills, isDisabled } =
+    useStepOne();
 
   const { data } = useSession();
   const user = data?.user;
@@ -48,6 +38,12 @@ export function StepOne() {
     seniority: Number(seniority?.value),
   };
 
+  const handleSubmit = () => {
+    if (validateStepAndInsertStore(formData)) {
+      nextStep();
+    }
+  };
+
   if (!user) return null;
 
   return (
@@ -55,7 +51,7 @@ export function StepOne() {
       className="flex flex-col w-full gap-5 text-gray-600"
       initial="initial"
       animate="animate"
-      variants={variants}
+      variants={baseAnimationVariant}
     >
       <div>
         <p className="mb-2">Quais são suas Skills, {user.name} ?</p>
@@ -79,7 +75,11 @@ export function StepOne() {
         />
       </div>
       <hr />
-      <Button onClick={() => validateStepAndGoNext(formData)} $variant="green">
+      <Button
+        onClick={handleSubmit}
+        $variant="green"
+        disabled={isDisabled as boolean}
+      >
         Continuar
       </Button>
     </motion.div>

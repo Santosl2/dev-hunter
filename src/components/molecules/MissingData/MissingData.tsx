@@ -1,16 +1,19 @@
+import { useSession } from "next-auth/react";
+
 import { Button } from "@/components/atoms";
 import { ModalEnumTypes } from "@/shared/constants/enums";
-import { useUserInfo } from "@/shared/hooks";
-import { useModals } from "@/shared/hooks/useModals";
+import { useUserInfo, useModals } from "@/shared/hooks";
 
 export function MissingData() {
   const { openModal } = useModals();
   const { data } = useUserInfo();
+  const { data: userData } = useSession();
+
   const rows = data?.data;
 
-  const isComplete = rows && rows.seniority && rows?.location;
+  const isComplete = rows && rows.seniority && rows.categories;
 
-  if (isComplete) return null;
+  if (isComplete || !userData?.user) return null;
 
   return (
     <div

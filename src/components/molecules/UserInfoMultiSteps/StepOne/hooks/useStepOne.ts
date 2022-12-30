@@ -2,17 +2,12 @@ import { useState, useCallback } from "react";
 
 import { CATEGORIES } from "@/shared/constants/categories";
 import { SENIORITIES } from "@/shared/constants/seniorities";
-import { MULTI_STEP_STORAGE_KEY } from "@/shared/constants/storage";
-import { useLocalStorage } from "@/shared/hooks/useLocalStorage";
-import { LocalStorageSteps } from "@/shared/interfaces";
+import { useMultiStep } from "@/shared/hooks";
 
 import { StateProps } from "../StepOne.types";
 
 export function useStepOne() {
-  const { storage } = useLocalStorage<LocalStorageSteps>(
-    MULTI_STEP_STORAGE_KEY,
-    {} as LocalStorageSteps
-  );
+  const { storage } = useMultiStep();
 
   const [skills, setSkills] = useState<StateProps>(() => {
     if (storage?.stepOne?.skills) {
@@ -74,10 +69,13 @@ export function useStepOne() {
     [setSeniority]
   );
 
+  const isDisabled = !skills?.value || !seniority?.value;
+
   return {
     skills,
     seniority,
     setSkills: setUserSkills,
     setSeniority: setUserSeniority,
+    isDisabled,
   };
 }
