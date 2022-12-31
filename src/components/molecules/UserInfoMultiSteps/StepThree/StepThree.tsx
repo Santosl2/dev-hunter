@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { BsGithub, BsLinkedin } from "react-icons/bs";
 
+import { motion } from "framer-motion";
+
 import { Button, Input } from "@/components/atoms";
 import { useMutationCreateInfo, useMultiStep } from "@/shared/hooks";
 import { CreateUser } from "@/shared/interfaces/user";
+import { baseAnimationVariant } from "@/shared/variants";
 
 export function StepThree() {
   const { validateStepAndInsertStore, prevStep, storage } = useMultiStep();
@@ -44,7 +47,12 @@ export function StepThree() {
   };
 
   return (
-    <div>
+    <motion.div
+      initial="initial"
+      animate="animate"
+      variants={baseAnimationVariant}
+      data-testid="step-three"
+    >
       <Input
         type="url"
         placeholder="https://www.linkedin.com/in/"
@@ -63,9 +71,9 @@ export function StepThree() {
           Voltar
         </Button>
         <Button $variant="green" onClick={handleSubmit} disabled={isDisabled}>
-          Continuar
+          Finalizar!
         </Button>
       </div>
-    </div>
+    </motion.div>
   );
 }

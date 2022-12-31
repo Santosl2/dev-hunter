@@ -35,6 +35,7 @@ export function StepTwo() {
       initial="initial"
       animate="animate"
       variants={baseAnimationVariant}
+      data-testid="step-two"
     >
       <div>
         <label className="mb-2" htmlFor="step-two-bio">

@@ -41,7 +41,13 @@ export function UserInfoMultiStep() {
     dynamicSteps[currentStep as keyof typeof dynamicSteps] ?? dynamicSteps[1];
 
   return (
-    <ModalFlowbite show onClose={closeModal} popup size="xl">
+    <ModalFlowbite
+      show
+      onClose={closeModal}
+      popup
+      size="xl"
+      data-testid="user-info-multi-step"
+    >
       <ModalFlowbite.Header />
       <ModalFlowbite.Body>
         <div className="text-gray-600">

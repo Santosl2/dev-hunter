@@ -23,6 +23,7 @@ export function Select({
       placeholder={placeholder}
       options={options}
       onChange={onChange}
+      data-testid="select"
     />
   );
 }

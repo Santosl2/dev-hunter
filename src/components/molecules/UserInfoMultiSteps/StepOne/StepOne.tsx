@@ -44,17 +44,16 @@ export function StepOne() {
     }
   };
 
-  if (!user) return null;
-
   return (
     <motion.div
       className="flex flex-col w-full gap-5 text-gray-600"
       initial="initial"
       animate="animate"
       variants={baseAnimationVariant}
+      data-testid="step-one"
     >
       <div>
-        <p className="mb-2">Quais são suas Skills, {user.name} ?</p>
+        <p className="mb-2">Quais são suas Skills, {user?.name} ?</p>
 
         <Select
           options={options}

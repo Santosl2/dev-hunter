@@ -17,6 +17,7 @@ type RenderFunction = ReturnType<typeof render>;
 
 type CustomRenderReturn = RenderFunction & {
   store: StoreType;
+  renderAgain: () => CustomRenderReturn;
 };
 
 const createTestStore = (initialState: Partial<AppState> = {}) => {
@@ -41,7 +42,7 @@ export const customRender = (
   const store = createTestStore(initialState);
   const session = withMockedSession ? MOCKED_SESSION_USER : ({} as Session);
 
-  const renderedComponent = render(
+  const componentToRender = (
     <QueryClientProvider client={queryClientTest}>
       <Provider store={store}>
         <SessionProvider refetchOnWindowFocus={false} session={session}>
@@ -51,8 +52,15 @@ export const customRender = (
     </QueryClientProvider>
   );
 
+  const renderedComponent = render(componentToRender);
+
   return {
     ...renderedComponent,
+    renderAgain: () => {
+      renderedComponent.unmount();
+
+      return customRender(component, options);
+    },
     store,
   };
 };

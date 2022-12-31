@@ -1,2 +1,2 @@
-export * from "./Category";
+export * from "./Skills";
 export * from "./Seniority";

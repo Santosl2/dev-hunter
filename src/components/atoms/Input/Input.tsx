@@ -29,7 +29,10 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
       )}
       <div className="relative mb-6">
         {!!hasIcon && (
-          <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+          <div
+            className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+            data-testid="input-test-icon"
+          >
             {icon}
           </div>
         )}
