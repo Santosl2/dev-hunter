@@ -9,7 +9,6 @@ import { MultiStepContext } from "./Context";
 
 export function MultiStepProvider({ children }: { children: React.ReactNode }) {
   const [currentStep, setCurrentStep] = useState(1);
-  const [steps, setSteps] = useState(0);
 
   const { storage, setStorage } = useLocalStorage<LocalStorageSteps>(
     MULTI_STEP_STORAGE_KEY,
@@ -27,14 +26,6 @@ export function MultiStepProvider({ children }: { children: React.ReactNode }) {
   const reset = useCallback(() => {
     setCurrentStep(1);
   }, []);
-
-  const setCurrentStepMemoized = useCallback(
-    (newStep: number) => {
-      if (newStep > steps) return;
-      setCurrentStep(newStep);
-    },
-    [steps]
-  );
 
   const validateStepAndInsertStore = useCallback(
     (data: any) => {
@@ -79,12 +70,10 @@ export function MultiStepProvider({ children }: { children: React.ReactNode }) {
   const values = useMemo(
     () => ({
       currentStep,
-      steps,
       storage,
-      setCurrentStep: setCurrentStepMemoized,
+
       nextStep,
       prevStep,
-      setSteps,
       reset,
       validateStepAndInsertStore,
     }),
@@ -93,8 +82,7 @@ export function MultiStepProvider({ children }: { children: React.ReactNode }) {
       nextStep,
       prevStep,
       reset,
-      steps,
-      setCurrentStepMemoized,
+
       validateStepAndInsertStore,
       storage,
     ]
