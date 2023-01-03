@@ -6,6 +6,12 @@
 import "@testing-library/jest-dom/extend-expect";
 import { forwardRef } from "react";
 
+import { server } from "./mocks/msw";
+
+beforeAll(() => server.listen());
+afterEach(() => server.resetHandlers());
+afterAll(() => server.close());
+
 jest.mock("react-select", () => {
   const mockedReSelect = ({ options, value, onChange, isMulti }, ref) => {
     let selectedOptions = [];
