@@ -7,22 +7,33 @@ import { connectDB } from "@/shared/lib/mongo";
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const session = await getSession({ req });
+    const user = session?.user?.name;
 
-    if (!session?.user) {
+    if (!user) {
       return res.status(401).send("Unauthorized");
     }
 
     const client = await connectDB();
-    const returnData = await client
-      .collection("users")
-      .find({
-        name: session.user.name,
-      })
-      .limit(10)
-      .toArray();
+    const returnData = await client.collection("user_info").findOne({
+      user,
+    });
 
-    return res.json(returnData[0]);
+    const dataBio = await client.collection("users").findOne(
+      {
+        name: user,
+      },
+      {
+        projection: {
+          bio: 1,
+        },
+      }
+    );
+
+    return res.json({
+      ...returnData,
+      bio: dataBio?.bio,
+    });
   } catch (e) {
-    console.error(e);
+    return res.status(500).send("Internal Server Error");
   }
 };

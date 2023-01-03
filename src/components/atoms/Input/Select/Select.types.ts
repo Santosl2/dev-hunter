@@ -1,10 +1,7 @@
-type Option = {
-  value: string;
-  label: string;
-};
+import { OptionProps } from "@/shared/interfaces";
 
 export type SelectProps = {
-  options: Option[];
+  options: OptionProps[];
   defaultValue?: any;
   isMulti?: boolean;
   placeholder?: string;

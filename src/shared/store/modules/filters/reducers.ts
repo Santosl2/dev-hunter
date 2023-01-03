@@ -1,10 +1,10 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 
 export const filtersReducer = {
-  addCategory: (state: any, action: PayloadAction<string>) => {
+  addSkill: (state: any, action: PayloadAction<string>) => {
     return {
       ...state,
-      categories: [...state.categories, action.payload],
+      skills: [...state.skills, action.payload],
     };
   },
   addSeniority: (state: any, action: PayloadAction<string>) => {
@@ -15,18 +15,18 @@ export const filtersReducer = {
   },
 
   removeCategory: (state: any, action: PayloadAction<string>) => {
-    const newCategories = state.categories.filter(
+    const newCategories = state.skills.filter(
       (category: string) => category !== action.payload
     );
 
     return {
       ...state,
-      categories: newCategories,
+      skills: newCategories,
     };
   },
 
   removeSeniority: (state: any, action: PayloadAction<string>) => {
-    const newSeniority = state.categories.filter(
+    const newSeniority = state.skills.filter(
       (seniority: string) => seniority !== action.payload
     );
 

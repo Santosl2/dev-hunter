@@ -17,12 +17,13 @@ export type VariantAndSize = {
 };
 
 export type ButtonCustomProps = VariantAndSize & {
-  rounded?: boolean;
+  $rounded?: boolean;
   onClick?: () => void;
   type?: "button" | "submit" | "reset";
   iconLeft?: React.ReactNode;
   iconRight?: React.ReactNode;
   children: React.ReactNode;
+  disabled?: boolean;
 };
 
 export type ButtonProps = HTMLAttributes<HTMLButtonElement> & ButtonCustomProps;

@@ -13,7 +13,7 @@ export function CategoryItem({
   title,
   image,
   $color = "red",
-  type = "categories",
+  type = "skills",
 }: CategoryItemProps) {
   const firstLetter = title[0];
   const { handleCategoryClick, isSelected } = useCategoryItem(title, type);
@@ -42,20 +42,15 @@ export function CategoryItem({
   );
 }
 
-function useCategoryItem(title: string, type: FiltersStateKeys = "categories") {
-  const {
-    addCategory,
-    addSeniority,
-    filters,
-    removeCategory,
-    removeSeniority,
-  } = useFilters();
+function useCategoryItem(title: string, type: FiltersStateKeys = "skills") {
+  const { addSkill, addSeniority, filters, removeCategory, removeSeniority } =
+    useFilters();
 
   const obj: CategoryObjectProps = {
-    categories: {
-      addRegister: addCategory,
+    skills: {
+      addRegister: addSkill,
       removeRegister: removeCategory,
-      state: filters.categories,
+      state: filters.skills,
     },
     seniorities: {
       addRegister: addSeniority,
@@ -69,7 +64,7 @@ function useCategoryItem(title: string, type: FiltersStateKeys = "categories") {
     },
   };
 
-  const { addRegister, removeRegister, state } = obj[type] ?? obj.categories;
+  const { addRegister, removeRegister, state } = obj[type] ?? obj.skills;
 
   const isSelected = state.includes(title);
 

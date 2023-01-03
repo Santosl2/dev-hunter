@@ -15,7 +15,7 @@ import { UserInfoMultiStep as UserInfoMultiStepModal } from "@/components/organi
 import { MultiStepProvider } from "@/shared/contexts";
 import { queryClient } from "@/shared/services/queryClient";
 import { store } from "@/shared/store";
-import { MissingData } from "@/components/molecules/MissingData/MissingData";
+import { MissingData } from "@/components";
 
 function MyApp({ Component, pageProps, ...rest }: AppProps) {
   return (

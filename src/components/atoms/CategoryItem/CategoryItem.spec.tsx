@@ -19,7 +19,7 @@ describe("<CategoryItem/>", () => {
 
     fireEvent.click(categorySelector);
 
-    expect(store.getState().filters.categories).toEqual(["Title"]);
+    expect(store.getState().filters.skills).toEqual(["Title"]);
   });
 
   it("should be able to remove category correctly", () => {
@@ -29,11 +29,11 @@ describe("<CategoryItem/>", () => {
 
     fireEvent.click(categorySelector);
 
-    expect(store.getState().filters.categories).toEqual(["Title"]);
+    expect(store.getState().filters.skills).toEqual(["Title"]);
 
     fireEvent.click(categorySelector);
 
-    expect(store.getState().filters.categories).toEqual([]);
+    expect(store.getState().filters.skills).toEqual([]);
   });
 
   it("should be able to add seniority correctly", () => {

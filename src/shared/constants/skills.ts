@@ -1,6 +1,6 @@
 import { Categories } from "../interfaces";
 
-export const CATEGORIES: Categories[] = [
+export const SKILLS: Categories[] = [
   {
     id: 1,
     title: "Frontend Developer",
@@ -49,6 +49,4 @@ export const CATEGORIES: Categories[] = [
   },
 ];
 
-export const CATEGORIES_IDS = CATEGORIES.map((category) =>
-  category.id.toString()
-);
+export const SKILLS_IDS = SKILLS.map((category) => category.id.toString());

@@ -1,10 +1,10 @@
 import { CategoryItem } from "@/components/atoms";
-import { CATEGORIES } from "@/shared/constants/categories";
+import { SKILLS } from "@/shared/constants/skills";
 
-export function Category() {
+export function Skills() {
   return (
-    <ul className="grid grid-cols-auto-1fr gap-2">
-      {CATEGORIES.map((category) => (
+    <ul className="grid grid-cols-auto-1fr gap-2" data-testid="skills-box">
+      {SKILLS.map((category) => (
         <CategoryItem
           key={category.id}
           title={category.title}

@@ -31,8 +31,10 @@ export const Button = tw.button<ButtonCustomProps>`
     py-2.5 
     focus:outline-none
     rounded-sm
+    
+    disabled:opacity-75 disabled:cursor-not-allowed
 
-    ${({ rounded }) => rounded && "rounded-full"}
+    ${({ $rounded }) => $rounded && "rounded-full"}
     ${({ $variant }) => $variant && ButtonModifiers[$variant]}
     ${({ $size }) => $size && SizeModifiers[$size]}
 `;

@@ -16,7 +16,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     const client = await connectDB();
     const returnData = await client.collection("user_info").count({
-      categories: regex,
+      skills: regex,
     });
 
     return res.json({

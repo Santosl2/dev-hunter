@@ -7,6 +7,7 @@ const createJestConfig = nextJest({
 
 const customJestConfig = {
   setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
+  clearMocks: true,
 
   moduleNameMapper: {
     "@/(.*)": "<rootDir>/src/$1",

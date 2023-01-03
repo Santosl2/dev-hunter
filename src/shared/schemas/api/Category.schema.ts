@@ -1,6 +1,6 @@
 import * as z from "zod";
 
-import { CATEGORIES_IDS } from "@/shared/constants/categories";
+import { SKILLS_IDS } from "@/shared/constants/skills";
 
 export const categorySchema = z.object({
   query: z.object({
@@ -8,7 +8,7 @@ export const categorySchema = z.object({
       .string({
         required_error: "Categoria é obrigatória",
       })
-      .refine((value) => CATEGORIES_IDS.includes(value), {
+      .refine((value) => SKILLS_IDS.includes(value), {
         message: "Categoria inválida",
       }),
   }),
