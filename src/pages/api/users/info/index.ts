@@ -34,15 +34,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         .json({ message: "Você já preencheu os seus dados." });
     }
 
-    const {
-      bio,
-
-      linkedin,
-      seniority,
-      skills,
-      mobility_type,
-      contract_type,
-    } = req.body;
+    const { bio, linkedin, seniority, skills, mobility_type, contract_type } =
+      req.body;
 
     await apiUserInfoMultiStepSchema.parseAsync({
       bio,
@@ -64,7 +57,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     await client.collection("users").updateOne(
       {
-        user,
+        name: user,
       },
       {
         $set: {

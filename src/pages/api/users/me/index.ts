@@ -20,7 +20,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     const dataBio = await client.collection("users").findOne(
       {
-        login: user,
+        name: user,
       },
       {
         projection: {
