@@ -20,7 +20,9 @@ export function useStepOne() {
   } = useForm<StepOneProps>({
     defaultValues: {
       skills: [],
+      seniority: undefined,
     },
+
     resolver: zodResolver(userInfoMultiStepSchemaStepOne),
   });
 
@@ -50,6 +52,7 @@ export function useStepOne() {
   }, [storage?.stepOne]);
 
   const defaultValuesSeniority = useMemo(() => {
+    if (!storage?.stepOne?.seniority) return undefined;
     const defaultValue = SENIORITIES.find(
       (e) => e.id === storage?.stepOne?.seniority
     );
@@ -65,7 +68,6 @@ export function useStepOne() {
     isValid,
     handleSubmit: handleSubmit(onSubmit),
     errors,
-    onSubmit,
     defaultValuesSkills,
     defaultValuesSeniority,
   };

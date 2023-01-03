@@ -44,6 +44,7 @@ export function StepThree() {
             <Select
               options={CONTRACT_TYPES as any}
               isMulti
+              placeholder="Selecione seu modelo de contratação"
               {...field}
               onChange={(e) => {
                 const formattedContract = e.map((location: any) => {
@@ -69,6 +70,7 @@ export function StepThree() {
               options={MOBILITY_TYPES as any}
               isMulti
               {...field}
+              placeholder="Selecione seu modelo de trabalho..."
               onChange={(e) => {
                 const formattedLocation = e.map((location: any) => {
                   return location.value;

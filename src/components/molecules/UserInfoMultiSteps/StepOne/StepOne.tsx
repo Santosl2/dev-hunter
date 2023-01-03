@@ -30,10 +30,10 @@ export function StepOne() {
   const {
     defaultValuesSeniority,
     defaultValuesSkills,
-    onSubmit,
     control,
     handleSubmit,
     errors,
+    isValid,
   } = useStepOne();
 
   const { data } = useSession();
@@ -84,9 +84,8 @@ export function StepOne() {
           render={({ field }) => (
             <Select
               options={optionsSeniority}
-              placeholder="Eu sou..."
               {...field}
-              defaultValue={{ ...defaultValuesSeniority }}
+              defaultValue={defaultValuesSeniority}
               onChange={(e) => field.onChange(Number(e.value))}
             />
           )}
@@ -96,7 +95,7 @@ export function StepOne() {
         )}
       </div>
       <hr />
-      <Button $variant="green" type="submit">
+      <Button $variant="green" type="submit" disabled={!isValid}>
         Continuar
       </Button>
     </motion.form>

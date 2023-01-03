@@ -50,21 +50,25 @@ describe("<StepOne/>", () => {
     });
   });
 
-  it("should be able to appear input errors", async () => {
-    render();
+  // it("should be able to select Skills and Seniority", async () => {
+  //   render();
 
-    const button = screen.getByText("Continuar");
+  //   const selects = screen.getAllByTestId("select");
 
-    await act(async () => {
-      fireEvent.click(button);
-    });
+  //   const [skillsSelect, senioritySelect] = selects;
 
-    expect(
-      screen.getByText("Selecione pelo menos uma habilidade")
-    ).toBeInTheDocument();
+  //   fireEvent.change(skillsSelect, {
+  //     target: { value: SKILLS[0].title },
+  //   });
 
-    expect(screen.getByText("Selecione sua senioridade")).toBeInTheDocument();
-  });
+  //   fireEvent.change(senioritySelect, {
+  //     target: { value: SENIORITIES[0].title },
+  //   });
+
+  //   const button = screen.getByText("Continuar");
+
+  //   expect(button).toBeEnabled();
+  // });
 
   describe("integrations", () => {
     it.todo("start integration tests");
