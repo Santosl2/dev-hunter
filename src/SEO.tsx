@@ -26,21 +26,21 @@ export function SEO({
   return (
     <Head>
       <title>{pageTitle}</title>
-
       {description && <meta name="description" content={description} />}
       {image && <meta name="image" content={pageImage ?? undefined} />}
-
       {!shouldIndexPage && <meta name="robots" content="noindex, nofollow" />}
-
+      <meta
+        name="keywords"
+        content="mecanismo de busca de empregos, buscar vagas de emprego, oportunidades de emprego, lista de emprego, trabalho, vagas de trabalho, oportunidades de trabalho, vagas, rss jobs feed xml, encontrar desenvolvedor, desenvolvedor frontend, desenvolvedor backend, devops, desenvolvedor mobile, desenvolvedor javascript, desenvolvedor java, desenvolvedor php, desenvolvedor fullstack"
+      />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta httpEquiv="x-ua-compatible" content="IE=edge,chrome=1" />
       <meta name="MobileOptimized" content="320" />
       <meta name="HandheldFriendly" content="True" />
-      <meta name="theme-color" content="#ff9d71" />
-      <meta name="msapplication-TileColor" content="#ff9d71" />
+      <meta name="theme-color" content="#057A55" />
+      <meta name="msapplication-TileColor" content="#057A55" />
       <meta name="referrer" content="no-referrer-when-downgrade" />
       <meta name="google" content="notranslate" />
-
       <meta property="og:title" content={pageTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content={process.env.NEXT_PUBLIC_SITE_URL} />
@@ -53,7 +53,6 @@ export function SEO({
       <meta property="og:image:type" content="image/png" />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-
       <meta name="twitter:title" content={pageTitle} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:image" content={pageImage ?? undefined} />
