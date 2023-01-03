@@ -18,7 +18,21 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       user,
     });
 
-    return res.json(returnData);
+    const dataBio = await client.collection("users").findOne(
+      {
+        login: user,
+      },
+      {
+        projection: {
+          bio: 1,
+        },
+      }
+    );
+
+    return res.json({
+      ...returnData,
+      bio: dataBio?.bio,
+    });
   } catch (e) {
     return res.status(500).send("Internal Server Error");
   }

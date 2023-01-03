@@ -8,6 +8,9 @@ describe("useMultiStep", () => {
       seniority: 1,
       skills: [1, 2],
     },
+    stepTwo: {
+      bio: "Test",
+    },
   };
 
   const render = () =>
@@ -60,7 +63,7 @@ describe("useMultiStep", () => {
     const { result } = render();
 
     act(() => {
-      result.current.validateStepAndInsertStore(mockedSteps);
+      result.current.insertStepStorage();
     });
 
     expect(jestMockedSetStorage);

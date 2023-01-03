@@ -1,81 +1,72 @@
-import { useState, useCallback } from "react";
+import { useCallback, useEffect, useMemo } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import { SENIORITIES } from "@/shared/constants/seniorities";
 import { SKILLS } from "@/shared/constants/skills";
 import { useMultiStep } from "@/shared/hooks";
-
-import { StateProps } from "../StepOne.types";
+import { StepOneProps } from "@/shared/interfaces/multi-step";
+import { userInfoMultiStepSchemaStepOne } from "@/shared/schemas/UserInfoMultiStep.schema";
 
 export function useStepOne() {
-  const { storage } = useMultiStep();
+  const { storage, insertStepStorage, nextStep } = useMultiStep();
 
-  const [skills, setSkills] = useState<StateProps>(() => {
-    if (storage?.stepOne?.skills) {
-      const defaultValue = storage.stepOne.skills.map((id) => {
-        return {
-          value: id,
-          label: SKILLS.find((cat) => cat.id === Number(id))?.title,
-        };
-      });
-
-      return {
-        defaultValue,
-        value: storage.stepOne.skills,
-      };
-    }
-
-    return null;
+  const {
+    control,
+    setValue,
+    formState: { isValid, errors },
+    handleSubmit,
+  } = useForm<StepOneProps>({
+    defaultValues: {
+      skills: [],
+    },
+    resolver: zodResolver(userInfoMultiStepSchemaStepOne),
   });
 
-  const [seniority, setSeniority] = useState<StateProps>(() => {
-    if (storage?.stepOne?.seniority) {
-      const defaultValue = SENIORITIES.find(
-        (e) => e.id === storage.stepOne.seniority
-      );
+  useEffect(() => {
+    const skills = storage.stepOne?.skills || [];
+    const seniority = storage.stepOne?.seniority || 0;
 
-      return {
-        defaultValue: {
-          value: defaultValue?.id.toString(),
-          label: defaultValue?.title,
-        },
-        value: storage.stepOne.seniority,
-      };
-    }
+    if (skills.length) setValue("skills", skills);
+    if (seniority) setValue("seniority", Number(seniority));
+  }, [storage?.stepOne]);
 
-    return null;
-  });
-
-  const setUserSkills = useCallback(
-    (newSkills: any) => {
-      const formattedSkills = newSkills.map((skill: any) => {
-        return skill.value;
-      });
-
-      setSkills({
-        defaultValue: newSkills,
-        value: formattedSkills,
-      });
+  const onSubmit: SubmitHandler<StepOneProps> = useCallback(
+    (formData) => {
+      insertStepStorage(formData);
+      nextStep();
     },
-    [setSkills]
+    [insertStepStorage, nextStep]
   );
 
-  const setUserSeniority = useCallback(
-    (newSeniority: any) => {
-      setSeniority({
-        defaultValue: newSeniority,
-        value: newSeniority.value,
-      });
-    },
-    [setSeniority]
-  );
+  const defaultValuesSkills = useMemo(() => {
+    const skills = storage?.stepOne?.skills.map((id: string) => ({
+      value: id,
+      label: SKILLS.find((skill) => skill.id === Number(id))?.title,
+    }));
 
-  const isDisabled = !skills?.value || !seniority?.value;
+    return skills;
+  }, [storage?.stepOne]);
+
+  const defaultValuesSeniority = useMemo(() => {
+    const defaultValue = SENIORITIES.find(
+      (e) => e.id === storage?.stepOne?.seniority
+    );
+
+    return {
+      value: defaultValue?.id.toString(),
+      label: defaultValue?.title,
+    };
+  }, [storage?.stepOne]);
 
   return {
-    skills,
-    seniority,
-    setSkills: setUserSkills,
-    setSeniority: setUserSeniority,
-    isDisabled,
+    control,
+    isValid,
+    handleSubmit: handleSubmit(onSubmit),
+    errors,
+    onSubmit,
+    defaultValuesSkills,
+    defaultValuesSeniority,
   };
 }

@@ -10,10 +10,13 @@ jest.mock(
   () =>
     function ({ options, value, onChange, isMulti }) {
       let selectedOptions = [];
+
       function handleChange(event) {
         const option = options.find(
           (op) => op.value === event.currentTarget.value
         );
+
+        if (!option) return;
 
         if (isMulti) {
           selectedOptions = [...selectedOptions, option];

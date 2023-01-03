@@ -1,36 +1,79 @@
 /* eslint-disable prefer-regex-literals */
 import * as z from "zod";
 
+import { CONTRACT_TYPES, MOBILITY_TYPES } from "../constants";
+
 export const userInfoMultiStepSchema = z.object({
   stepOne: z.object({
     seniority: z
       .number({
-        required_error: "Selecione uma senioridade",
+        required_error: "Selecione sua senioridade",
       })
-      .min(0),
+      .min(1, "Selecione sua senioridade"),
     skills: z
       .string({
-        required_error: "Selecione ao menos uma habilidade",
+        required_error: "Selecione pelo menos uma habilidade",
       })
       .array()
       .nonempty({
-        message: "Selecione ao menos uma habilidade",
+        message: "Selecione pelo menos uma habilidade",
       }),
   }),
   stepTwo: z.object({
-    bio: z.string({
-      required_error: "Preencha o campo",
-    }),
+    bio: z
+      .string({
+        required_error: "Conte um pouco sobre você",
+      })
+      .min(10, {
+        message: "Conte um pouco sobre você (mínimo 10 caracteres)",
+      }),
   }),
   stepThree: z.object({
-    github: z
+    mobility_type: z
+      .string({
+        required_error:
+          "Selecione  o(s) tipo(s) de mobilidade(s) que você deseja",
+      })
+      .array()
+      .refine(
+        (value) => {
+          const mobilityValues = MOBILITY_TYPES.map((item) => item.value);
+          const verifyExistsInArray = mobilityValues.find((item) =>
+            value.includes(item)
+          );
+
+          return verifyExistsInArray;
+        },
+        {
+          message: "Tipo de mobilidade inválido",
+        }
+      ),
+    contract_type: z
+      .string({
+        required_error: "Selecione o(s) tipo(s) de contrato(s) que você deseja",
+      })
+      .array()
+      .refine(
+        (value) => {
+          const contractValues = CONTRACT_TYPES.map((item) => item.value);
+          const verifyExistsInArray = contractValues.find((item) =>
+            value.includes(item)
+          );
+
+          return verifyExistsInArray;
+        },
+        {
+          message: "Tipo de contrato inválido",
+        }
+      ),
+    linkedin: z
       .string({
         required_error: "Preencha o campo",
       })
       .refine(
         (value) => {
           const regex = new RegExp(
-            "^(https?:\\/\\/)?(www\\.)?github\\.com\\/.+$"
+            "^(https?:\\/\\/)?(www\\.)?linkedin\\.com\\/in\\/.+$"
           );
           return regex.test(value);
         },
@@ -38,17 +81,6 @@ export const userInfoMultiStepSchema = z.object({
           message: "Insira um link válido",
         }
       ),
-
-    linkedin: z
-      .string({
-        required_error: "Preencha o campo",
-      })
-      .refine((value) => {
-        const regex = new RegExp(
-          "^(https?:\\/\\/)?(www\\.)?linkedin\\.com\\/in\\/.+$"
-        );
-        return regex.test(value);
-      }),
   }),
 });
 

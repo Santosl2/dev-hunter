@@ -58,6 +58,7 @@
     "typescript": "4.7.4"
   },
   "dependencies": {
+    "@hookform/resolvers": "^2.9.10",
     "@next-auth/mongodb-adapter": "^1.1.1",
     "@reduxjs/toolkit": "^1.9.1",
     "@tanstack/react-query": "^4.20.4",
@@ -71,6 +72,7 @@
     "next-auth": "^4.18.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.41.3",
     "react-icons": "^4.7.1",
     "react-redux": "^8.0.5",
     "react-select": "^5.7.0",

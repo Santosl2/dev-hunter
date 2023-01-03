@@ -11,8 +11,7 @@ export function MissingData() {
 
   const rows = data?.data;
 
-  const isComplete =
-    rows && rows.seniority && rows.skills && rows.github && rows.linkedin;
+  const isComplete = rows && rows.seniority && rows.skills && rows.linkedin;
 
   if (isComplete || !userData?.user) return null;
 

@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable consistent-return */
 import { NextApiRequest, NextApiResponse } from "next";
 import { getSession } from "next-auth/react";
@@ -33,11 +34,20 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         .json({ message: "Você já preencheu os seus dados." });
     }
 
-    const { bio, github, linkedin, seniority, skills } = req.body;
+    const {
+      bio,
+
+      linkedin,
+      seniority,
+      skills,
+      mobility_type,
+      contract_type,
+    } = req.body;
 
     await apiUserInfoMultiStepSchema.parseAsync({
       bio,
-      github,
+      mobility_type,
+      contract_type,
       linkedin,
       seniority,
       skills,
@@ -45,7 +55,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     const data = await client.collection("user_info").insertOne({
       user,
-      github,
+      mobility_type,
+      contract_type,
       linkedin,
       seniority,
       skills,
@@ -66,6 +77,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       rows: data,
     });
   } catch (e) {
+    console.log(e);
     return res.status(400).json({
       message:
         "Ocorreu um erro ao tentar atualizar os seus dados. Tente novamente mais tarde.",

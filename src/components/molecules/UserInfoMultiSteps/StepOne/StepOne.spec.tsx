@@ -3,7 +3,7 @@ import { SKILLS } from "@/shared/constants/skills";
 import { MultiStepProvider } from "@/shared/contexts";
 import { customRender } from "@/shared/tests/customRender";
 import { MOCKED_SESSION_USER } from "@/shared/tests/mock";
-import { fireEvent, render, screen } from "@testing-library/react";
+import { act, fireEvent, render, screen } from "@testing-library/react";
 import { StepOne } from "./StepOne";
 
 describe("<StepOne/>", () => {
@@ -50,26 +50,20 @@ describe("<StepOne/>", () => {
     });
   });
 
-  it("submit button must be disabled", () => {
+  it("should be able to appear input errors", async () => {
     render();
 
     const button = screen.getByText("Continuar");
 
-    expect(button).toBeDisabled();
-  });
+    await act(async () => {
+      fireEvent.click(button);
+    });
 
-  it("submit button must be enabled when user select your information", () => {
-    render();
+    expect(
+      screen.getByText("Selecione pelo menos uma habilidade")
+    ).toBeInTheDocument();
 
-    const [skill, seniority] = screen.getAllByTestId("select");
-
-    fireEvent.change(skill, { target: { value: SKILLS[0].id } });
-    fireEvent.change(skill, { target: { value: SKILLS[1].id } });
-
-    fireEvent.change(seniority, { target: { value: SENIORITIES[0].id } });
-
-    const button = screen.getByText("Continuar");
-    expect(button).toBeEnabled();
+    expect(screen.getByText("Selecione sua senioridade")).toBeInTheDocument();
   });
 
   describe("integrations", () => {

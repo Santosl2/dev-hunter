@@ -1,3 +1,6 @@
+/* eslint-disable react/function-component-definition */
+/* eslint-disable unused-imports/no-unused-vars */
+import { forwardRef, ForwardRefRenderFunction } from "react";
 import ReactSelect from "react-select";
 import makeAnimated from "react-select/animated";
 
@@ -6,13 +9,16 @@ import { SelectProps } from "./Select.types";
 
 const animatedComponents = makeAnimated();
 
-export function Select({
-  options,
-  defaultValue,
-  isMulti = false,
-  placeholder = "Selecione...",
-  onChange,
-}: SelectProps) {
+const SelectBase: ForwardRefRenderFunction<unknown, SelectProps> = (
+  {
+    options,
+    defaultValue,
+    isMulti = false,
+    placeholder = "Selecione...",
+    onChange,
+  },
+  ref
+) => {
   return (
     <ReactSelect
       closeMenuOnSelect={!isMulti}
@@ -26,4 +32,6 @@ export function Select({
       data-testid="select"
     />
   );
-}
+};
+
+export const Select = forwardRef(SelectBase);

@@ -6,6 +6,7 @@
 
 import { forwardRef, ForwardRefRenderFunction } from "react";
 
+import { ErrorMessage } from "./ErrorMessage";
 import { InputTW } from "./Input.styles";
 import { InputProps } from "./Input.types";
 
@@ -21,13 +22,13 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
   };
 
   return (
-    <>
+    <div className="mb-6">
       {!!label && (
         <label className="mb-2 text-sm font-medium text-gray-900 dark:text-white">
           {label}
         </label>
       )}
-      <div className="relative mb-6">
+      <div className="relative">
         {!!hasIcon && (
           <div
             className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
@@ -45,7 +46,8 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
           onChange={handleChange}
         />
       </div>
-    </>
+      {!!hasError && <ErrorMessage message={error} />}
+    </div>
   );
 };
 

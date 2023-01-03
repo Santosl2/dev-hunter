@@ -1,4 +1,5 @@
 /* eslint-disable import/no-cycle */
+import { CONTRACT_TYPES, MOBILITY_TYPES } from "../constants";
 import { store } from "../store";
 import "./states";
 
@@ -23,16 +24,10 @@ export type StoreType = typeof store;
 type StateType = typeof store.getState;
 export type AppState = ReturnType<StateType>;
 
-export type LocalStorageSteps = {
-  stepOne: {
-    seniority: number;
-    skills: string[];
-  };
-  stepTwo: {
-    bio: string;
-  };
-  stepThree: {
-    linkedin: string;
-    github: string;
-  };
+export type ContractsTypes = typeof CONTRACT_TYPES[number]["label"];
+export type LocationTypes = typeof MOBILITY_TYPES[number]["label"];
+
+export type OptionProps = {
+  value: string;
+  label: string;
 };

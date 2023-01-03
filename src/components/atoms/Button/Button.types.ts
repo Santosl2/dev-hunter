@@ -17,7 +17,7 @@ export type VariantAndSize = {
 };
 
 export type ButtonCustomProps = VariantAndSize & {
-  rounded?: boolean;
+  $rounded?: boolean;
   onClick?: () => void;
   type?: "button" | "submit" | "reset";
   iconLeft?: React.ReactNode;

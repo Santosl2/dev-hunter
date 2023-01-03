@@ -2,8 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { MULTI_STEP_STORAGE_KEY } from "@/shared/constants/storage";
 import { useLocalStorage } from "@/shared/hooks/useLocalStorage";
-import { LocalStorageSteps } from "@/shared/interfaces";
-import { userInfoMultiStepSchema } from "@/shared/schemas/UserInfoMultiStep.schema";
+import { LocalStorageSteps } from "@/shared/interfaces/multi-step";
 
 import { MultiStepContext } from "./Context";
 
@@ -27,7 +26,7 @@ export function MultiStepProvider({ children }: { children: React.ReactNode }) {
     setCurrentStep(1);
   }, []);
 
-  const validateStepAndInsertStore = useCallback(
+  const insertStepStorage = useCallback(
     (data: any) => {
       const stepsObj = {
         1: "stepOne",
@@ -43,16 +42,7 @@ export function MultiStepProvider({ children }: { children: React.ReactNode }) {
         [actualStep]: data,
       };
 
-      const schema =
-        userInfoMultiStepSchema.shape[
-          actualStep as keyof typeof userInfoMultiStepSchema.shape
-        ];
-
-      const parse = schema.safeParse(data);
-
-      if (parse.success) setStorage(newStorageData);
-
-      return parse.success;
+      setStorage(newStorageData);
     },
     [currentStep, setStorage, storage]
   );
@@ -60,7 +50,7 @@ export function MultiStepProvider({ children }: { children: React.ReactNode }) {
   const getUserCurrentStep = useCallback(() => {
     const keys = Object.keys(storage);
 
-    setCurrentStep(keys.length + 1);
+    setCurrentStep(keys.length || 1);
   }, [storage]);
 
   useEffect(() => {
@@ -75,17 +65,9 @@ export function MultiStepProvider({ children }: { children: React.ReactNode }) {
       nextStep,
       prevStep,
       reset,
-      validateStepAndInsertStore,
+      insertStepStorage,
     }),
-    [
-      currentStep,
-      nextStep,
-      prevStep,
-      reset,
-
-      validateStepAndInsertStore,
-      storage,
-    ]
+    [currentStep, nextStep, prevStep, reset, insertStepStorage, storage]
   );
 
   return (

@@ -34,7 +34,7 @@ export const Button = tw.button<ButtonCustomProps>`
     
     disabled:opacity-75 disabled:cursor-not-allowed
 
-    ${({ rounded }) => rounded && "rounded-full"}
+    ${({ $rounded }) => $rounded && "rounded-full"}
     ${({ $variant }) => $variant && ButtonModifiers[$variant]}
     ${({ $size }) => $size && SizeModifiers[$size]}
 `;

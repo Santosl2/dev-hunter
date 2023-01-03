@@ -1,12 +1,13 @@
 /* eslint-disable no-use-before-define */
 
+import { Controller } from "react-hook-form";
+
 import { motion } from "framer-motion";
 import { useSession } from "next-auth/react";
 
-import { Button, Select } from "@/components/atoms";
+import { Button, ErrorMessage, Select } from "@/components/atoms";
 import { SENIORITIES } from "@/shared/constants/seniorities";
 import { SKILLS } from "@/shared/constants/skills";
-import { useMultiStep } from "@/shared/hooks";
 import { baseAnimationVariant } from "@/shared/variants";
 
 import { useStepOne } from "./hooks";
@@ -26,61 +27,78 @@ const optionsSeniority = SENIORITIES.map((sen) => {
 });
 
 export function StepOne() {
-  const { validateStepAndInsertStore, nextStep } = useMultiStep();
-  const { seniority, setSeniority, setSkills, skills, isDisabled } =
-    useStepOne();
+  const {
+    defaultValuesSeniority,
+    defaultValuesSkills,
+    onSubmit,
+    control,
+    handleSubmit,
+    errors,
+  } = useStepOne();
 
   const { data } = useSession();
   const user = data?.user;
 
-  const formData = {
-    skills: skills?.value,
-    seniority: Number(seniority?.value),
-  };
-
-  const handleSubmit = () => {
-    if (validateStepAndInsertStore(formData)) {
-      nextStep();
-    }
-  };
-
   return (
-    <motion.div
+    <motion.form
       className="flex flex-col w-full gap-5 text-gray-600"
       initial="initial"
       animate="animate"
       variants={baseAnimationVariant}
       data-testid="step-one"
+      onSubmit={handleSubmit}
     >
       <div>
         <p className="mb-2">Quais são suas Skills, {user?.name} ?</p>
 
-        <Select
-          options={options}
-          isMulti
-          onChange={setSkills}
-          defaultValue={skills?.defaultValue}
+        <Controller
+          name="skills"
+          control={control}
+          render={({ field }) => (
+            <Select
+              options={options}
+              isMulti
+              {...field}
+              defaultValue={defaultValuesSkills}
+              onChange={(e) => {
+                const formattedSkills = e.map((skill: any) => {
+                  return skill.value;
+                });
+
+                field.onChange(formattedSkills);
+              }}
+            />
+          )}
         />
+        {errors.skills?.message && (
+          <ErrorMessage message={errors.skills.message} />
+        )}
       </div>
 
       <div>
         <p className="mb-2">E a sua senioridade ?</p>
 
-        <Select
-          options={optionsSeniority}
-          placeholder="Eu sou..."
-          onChange={setSeniority}
-          defaultValue={seniority?.defaultValue}
+        <Controller
+          name="seniority"
+          control={control}
+          render={({ field }) => (
+            <Select
+              options={optionsSeniority}
+              placeholder="Eu sou..."
+              {...field}
+              defaultValue={{ ...defaultValuesSeniority }}
+              onChange={(e) => field.onChange(Number(e.value))}
+            />
+          )}
         />
+        {errors.seniority?.message && (
+          <ErrorMessage message={errors.seniority.message} />
+        )}
       </div>
       <hr />
-      <Button
-        onClick={handleSubmit}
-        $variant="green"
-        disabled={isDisabled as boolean}
-      >
+      <Button $variant="green" type="submit">
         Continuar
       </Button>
-    </motion.div>
+    </motion.form>
   );
 }

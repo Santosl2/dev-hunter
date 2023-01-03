@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-import { LocalStorageSteps } from "@/shared/interfaces";
+import { LocalStorageSteps } from "@/shared/interfaces/multi-step";
 
 type MultiStepContextProps = {
   currentStep: number;
@@ -10,7 +10,7 @@ type MultiStepContextProps = {
   nextStep: () => void;
   prevStep: () => void;
 
-  validateStepAndInsertStore: (data: any) => boolean;
+  insertStepStorage: (data: any) => boolean;
   reset: () => void;
 };
 

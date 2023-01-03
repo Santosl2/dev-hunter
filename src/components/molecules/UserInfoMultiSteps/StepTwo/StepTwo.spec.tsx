@@ -1,6 +1,6 @@
 import { MultiStepProvider } from "@/shared/contexts";
 import { customRender } from "@/shared/tests/customRender";
-import { fireEvent, screen } from "@testing-library/react";
+import { act, fireEvent, screen } from "@testing-library/react";
 import { StepTwo } from "./StepTwo";
 
 describe("<StepTwo/>", () => {
@@ -36,16 +36,32 @@ describe("<StepTwo/>", () => {
     expect(screen.getByRole("button", { name: /continuar/i })).toBeDisabled();
   });
 
-  it("submit button must be enabled when user type your bio info", () => {
+  it("submit button must be enabled when user type your bio info", async () => {
     render();
 
     expect(screen.getByRole("button", { name: /continuar/i })).toBeDisabled();
 
     const input = screen.getByRole("textbox");
 
-    fireEvent.change(input, { target: { value: "My bio" } });
+    await act(async () => {
+      fireEvent.change(input, { target: { value: "My bio test bro" } });
+    });
 
     expect(screen.getByRole("button", { name: /continuar/i })).toBeEnabled();
+  });
+
+  it("should be able to appear input errors", async () => {
+    render();
+
+    const button = screen.getByText("Continuar");
+
+    await act(async () => {
+      fireEvent.click(button);
+    });
+
+    expect(
+      screen.getByText("Conte-nos um pouco sobre você")
+    ).toBeInTheDocument();
   });
 
   describe("integrations", () => {
