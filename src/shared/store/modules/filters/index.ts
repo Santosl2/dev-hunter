@@ -6,9 +6,9 @@ import { FiltersStateProps } from "@/shared/interfaces/states";
 import { filtersReducer } from "./reducers";
 
 const initialState: FiltersStateProps = {
-  skills: [],
-  seniorities: [],
-  contractTypes: [],
+  skills: "",
+  seniorities: "",
+  contractTypes: "",
 };
 
 const filtersSlice = createSlice({

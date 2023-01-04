@@ -14,7 +14,7 @@ export const ButtonModifiers: ButtonStylesVariantObject = {
     "bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:ring-yellow-300 dark:bg-yellow-500 dark:hover:bg-yellow-600 dark:focus:ring-yellow-300",
   dark: "bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700",
   github:
-    "bg-[#24292F] hover:bg-[#24292F]/90 focus:ring-4 focus:ring-[#24292F]/50 px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30",
+    "bg-[#24292F] hover:bg-[#24292F]/90 focus:ring-4 focus:ring-[#24292F]/50 px-5 py-2.5 text-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30",
 };
 
 const SizeModifiers: ButtonStylesSizeObject = {
@@ -31,6 +31,9 @@ export const Button = tw.button<ButtonCustomProps>`
     py-2.5 
     focus:outline-none
     rounded-sm
+     inline-flex 
+     items-center
+     gap-2
     
     disabled:opacity-75 disabled:cursor-not-allowed
 

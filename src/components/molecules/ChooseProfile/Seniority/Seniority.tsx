@@ -10,6 +10,7 @@ export function Seniority() {
       {SENIORITIES.map((seniority) => (
         <CategoryItem
           key={seniority.id}
+          id={seniority.id}
           title={seniority.title}
           $color={seniority.color}
           type="seniorities"

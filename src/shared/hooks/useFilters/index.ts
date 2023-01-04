@@ -15,17 +15,17 @@ export function useFilters() {
 
   const actions = useMemo(
     () => ({
-      addSkill: (title: string) => {
-        dispatch(addSkill(title));
+      addSkill: (id: number) => {
+        dispatch(addSkill(id));
       },
-      addSeniority: (title: string) => {
-        dispatch(addSeniority(title));
+      addSeniority: (id: number) => {
+        dispatch(addSeniority(id));
       },
-      removeCategory: (title: string) => {
-        dispatch(removeCategory(title));
+      removeCategory: (id: number) => {
+        dispatch(removeCategory(id));
       },
-      removeSeniority: (title: string) => {
-        dispatch(removeSeniority(title));
+      removeSeniority: (id: number) => {
+        dispatch(removeSeniority(id));
       },
     }),
     [dispatch]

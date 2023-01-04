@@ -1,26 +1,26 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-use-before-define */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import { BsCheck } from "react-icons/bs";
 
-import { useFilters } from "@/shared/hooks";
-import { FiltersStateKeys } from "@/shared/interfaces/states";
-
 import { CategoryItemFigure } from "./CategoryItem.styles";
-import { CategoryItemProps, CategoryObjectProps } from "./CategoryItem.types";
+import { CategoryItemProps } from "./CategoryItem.types";
+import { useCategoryItem } from "./hooks";
 
 export function CategoryItem({
+  id,
   title,
   image,
   $color = "red",
   type = "skills",
 }: CategoryItemProps) {
   const firstLetter = title[0];
-  const { handleCategoryClick, isSelected } = useCategoryItem(title, type);
+  const { handleCategoryClick, isSelected } = useCategoryItem(id, type);
 
   return (
     <li
-      className="bg-white flex justify-center items-center min-w-xs p-5 mb-5 gap-5 font-bold shadow-sm rounded-sm cursor-pointer transition-all relative hover:shadow-md hover:-translate-y-2"
+      className="bg-white flex items-center min-w-xs p-5 mb-5 gap-5 font-bold shadow-sm rounded-sm cursor-pointer transition-all relative hover:shadow-md hover:-translate-y-2"
       onClick={handleCategoryClick}
       data-testid="category-item"
     >
@@ -33,52 +33,7 @@ export function CategoryItem({
       <CategoryItemFigure $color={$color} data-testid="category-figure-box">
         {image ? <img src={image} alt="Category" /> : firstLetter}
       </CategoryItemFigure>
-      <p className="text-slate-700 flex flex-col">
-        {title}
-
-        <small>+700 cadastrados</small>
-      </p>
+      <p className="text-slate-700 flex flex-col">{title}</p>
     </li>
   );
-}
-
-function useCategoryItem(title: string, type: FiltersStateKeys = "skills") {
-  const { addSkill, addSeniority, filters, removeCategory, removeSeniority } =
-    useFilters();
-
-  const obj: CategoryObjectProps = {
-    skills: {
-      addRegister: addSkill,
-      removeRegister: removeCategory,
-      state: filters.skills,
-    },
-    seniorities: {
-      addRegister: addSeniority,
-      removeRegister: removeSeniority,
-      state: filters.seniorities,
-    },
-    contractTypes: {
-      addRegister: addSeniority,
-      removeRegister: removeSeniority,
-      state: filters.seniorities,
-    },
-  };
-
-  const { addRegister, removeRegister, state } = obj[type] ?? obj.skills;
-
-  const isSelected = state.includes(title);
-
-  const handleCategoryClick = () => {
-    if (isSelected) {
-      removeRegister(title);
-      return;
-    }
-
-    addRegister(title);
-  };
-
-  return {
-    handleCategoryClick,
-    isSelected,
-  };
 }
