@@ -8,8 +8,11 @@ export function getDevelopers({
   seniorities,
   skills,
 }: FiltersStateProps) {
-  return api.post<GetDevelopersRequest>("/developers", {
-    seniorities,
-    skills,
+  return api.get<GetDevelopersRequest>("/developers", {
+    params: {
+      contractTypes,
+      seniorities,
+      skills,
+    },
   });
 }

@@ -6,20 +6,20 @@ import { connectDB } from "@/shared/lib/mongo";
 import { developersSchema } from "@/shared/schemas/api/developers.schema";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  if (req.method !== "POST")
+  if (req.method !== "GET")
     return res.status(405).json({ message: "Method not allowed" });
 
   try {
     developersSchema.parse(req);
 
     const client = await connectDB();
-    const { skills, seniorities } = req.body;
+    const { skills, seniorities } = req.query;
 
     const data = await client
       .collection("user_info")
       .find({
-        skills: RegExp(skills),
-        seniority: seniorities,
+        skills: RegExp(skills as string),
+        seniority: Number(seniorities),
       })
       .toArray();
 

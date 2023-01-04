@@ -2,12 +2,17 @@ import { customRender } from "@/shared/tests/customRender";
 import { MOCKED_SESSION_USER } from "@/shared/tests/mock";
 import { fireEvent, screen } from "@testing-library/react";
 import { signIn, signOut } from "next-auth/react";
+import Router from "next/router";
 import { Header } from "./Header";
 
 jest.mock("next-auth/react", () => ({
   ...jest.requireActual("next-auth/react"),
   signOut: jest.fn(),
   signIn: jest.fn(),
+}));
+
+jest.mock("next/router", () => ({
+  push: jest.fn(),
 }));
 
 describe("<Header/>", () => {
@@ -54,5 +59,19 @@ describe("<Header/>", () => {
     fireEvent.click(signInButton);
 
     expect(signIn).toHaveBeenCalled();
+  });
+
+  it("should be able to call router.push function when click in Logo", () => {
+    customRender(<Header />, {
+      withMockedSession: false,
+    });
+
+    const logoButton = screen.getByTestId("logo");
+
+    expect(logoButton).toBeInTheDocument();
+
+    fireEvent.click(logoButton);
+
+    expect(Router.push).toHaveBeenCalled();
   });
 });

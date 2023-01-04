@@ -1,9 +1,14 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+
 "use client";
 
 import { useCallback } from "react";
 import { AiOutlineGithub } from "react-icons/ai";
 
 import { signIn, signOut, useSession } from "next-auth/react";
+import Router from "next/router";
 
 import { UserPicture } from "@/components/atoms";
 
@@ -16,14 +21,21 @@ export function Header() {
     signIn("github");
   }, []);
 
+  const goMainPage = () => {
+    Router.push("/");
+  };
   return (
     <nav className="border-gray-200 px-2 sm:px-4 py-2.5 bg-green-600">
       <div className="container flex flex-wrap items-center justify-between  h-16 mx-auto text-white">
-        <a href="https://flowbite.com/" className="flex items-center">
+        <div
+          onClick={goMainPage}
+          className="flex items-center cursor-pointer"
+          data-testid="logo"
+        >
           <span className="self-center text-xl font-semibold whitespace-nowrap">
             find.devs
           </span>
-        </a>
+        </div>
         <div className="flex items-center md:order-2">
           {data?.user ? (
             <>
