@@ -12,10 +12,9 @@ export function Skills({ data }: SkillsProps) {
 
   const getSkillName = useCallback(
     (skill: number) =>
-      SKILLS.find(({ id }) => id === Number(skill))?.title.replace(
-        /Developer/gi,
-        ""
-      ),
+      SKILLS.find(({ id }) => id === Number(skill))
+        ?.title.replace(/Developer/gi, "")
+        .trim(),
     []
   );
 
@@ -34,14 +33,19 @@ export function Skills({ data }: SkillsProps) {
   if (!data) return null;
 
   return (
-    <section>
+    <section data-testid="developer-skills-section">
       Habilidades ({data.length})
       <div className="flex gap-2">
         {data.map((skill) => {
           const { bgColor, size } = isSelectedFilterSkillData(skill);
 
           return (
-            <Badge color={bgColor} size={size}>
+            <Badge
+              color={bgColor}
+              size={size}
+              key={skill}
+              data-testid="developer-skills"
+            >
               {getSkillName(Number(skill))}
             </Badge>
           );

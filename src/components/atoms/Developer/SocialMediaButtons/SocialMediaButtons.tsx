@@ -12,7 +12,10 @@ export function SocialMediaButtons({
   if (!github || !linkedin) return null;
 
   return (
-    <section className="flex gap-2">
+    <section
+      className="flex gap-2"
+      data-testid="developer-social-media-section"
+    >
       <Link href={`https://github.com/${github}`} target="_blank">
         <Button $variant="github" iconLeft={<AiOutlineGithub size={24} />}>
           GitHub
