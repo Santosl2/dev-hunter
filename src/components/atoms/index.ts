@@ -5,3 +5,4 @@ export * from "./CategoryItem";
 export * from "./GoSearchDevelopers";
 export * from "./Spinner";
 export * from "./RandomMessage";
+export * from "./Developer";

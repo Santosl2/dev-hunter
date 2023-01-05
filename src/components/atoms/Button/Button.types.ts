@@ -6,6 +6,7 @@ export const ButtonVariantArray = [
   "dark",
   "github",
   "yellow",
+  "linkedin",
 ] as const;
 
 export type ButtonVariants = typeof ButtonVariantArray[number];

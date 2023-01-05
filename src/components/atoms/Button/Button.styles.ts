@@ -15,6 +15,8 @@ export const ButtonModifiers: ButtonStylesVariantObject = {
   dark: "bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700",
   github:
     "bg-[#24292F] hover:bg-[#24292F]/90 focus:ring-4 focus:ring-[#24292F]/50 px-5 py-2.5 text-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30",
+  linkedin:
+    "bg-[#0077B7] hover:bg-[#0077B7]/90 focus:ring-4 focus:ring-[#0077B7]/50 px-5 py-2.5 text-center dark:focus:ring-gray-500 dark:hover:bg-[#0077B7]/30",
 };
 
 const SizeModifiers: ButtonStylesSizeObject = {

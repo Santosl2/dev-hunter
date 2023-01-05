@@ -10,11 +10,11 @@ export type User = {
   avatar_url: string;
   location: string;
   bio: string;
-  seniority?: string;
+  seniority?: number;
   skills?: string[];
   linkedin?: string;
-  contract_type?: ContractsTypes;
-  mobility_type?: LocationTypes;
+  contract_type?: ContractsTypes[];
+  mobility_type?: LocationTypes[];
 };
 
 export type CreateUser = z.infer<typeof apiUserInfoMultiStepSchema>;
