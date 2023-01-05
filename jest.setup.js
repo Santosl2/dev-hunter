@@ -14,19 +14,16 @@ afterAll(() => server.close());
 
 jest.mock("react-select", () => {
   const mockedReSelect = ({ options, value, onChange, isMulti }, ref) => {
-    let selectedOptions = [];
-
     function handleChange(event) {
       const option = options.find(
-        (op) => op.value === event.currentTarget.value
+        (op) => op.value.toString() === event.currentTarget.value
       );
 
       if (!option) return;
 
       if (isMulti) {
-        selectedOptions = [...selectedOptions, option];
+        onChange([option]);
 
-        onChange(selectedOptions);
         return;
       }
 

@@ -72,9 +72,9 @@ export function StepThree() {
               {...field}
               placeholder="Selecione seu modelo de trabalho..."
               onChange={(e) => {
-                const formattedLocation = e.map((location: any) => {
-                  return location.value;
-                });
+                const formattedLocation = e.map(
+                  (location: any) => location.value
+                );
 
                 field.onChange(formattedLocation);
               }}
