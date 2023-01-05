@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import party from "party-js";
 
 import { Developer } from "@/components/molecules";
+import { SEO } from "@/SEO";
 import { useFilters, useGetDevelopers } from "@/shared/hooks";
 
 import { LoadingResults } from "./LoadingResults";
@@ -27,18 +28,25 @@ export function Results() {
   if (!rows?.length) return <p>Nenhum resultado encontrado</p>;
 
   return (
-    <section className="container mx-auto p-5">
-      <div id="party" ref={partyRef} />
-      <div className="flex flex-col gap-5">
-        <h1 className="text-4xl font-bold">
-          Tivemos {rows.length} resultado(s)
-        </h1>
-        <div className="grid grid-cols-fill-1fr gap-5">
-          {rows.map((developer) => (
-            <Developer developer={developer} key={developer._id} />
-          ))}
+    <>
+      <SEO title={`${rows.length} resultados`} />
+      <section className="container mx-auto p-5">
+        <div id="party" ref={partyRef} />
+        <div className="flex flex-col gap-5">
+          <h1 className="text-4xl font-bold">
+            Tivemos {rows.length} resultado(s)
+          </h1>
+          <div className="grid grid-cols-fill-1fr gap-5">
+            {rows.map((developer, index) => (
+              <Developer
+                developer={developer}
+                key={developer._id}
+                index={index}
+              />
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

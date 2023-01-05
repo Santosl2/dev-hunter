@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const MESSAGES = [
+export const MESSAGES = [
   "Ei recruta, você já pensou em ser um desenvolvedor?",
   "Que tal dar uma chance para os desenvolvedores júniors?",
   "Estamos dando o nosso melhor para encontrar o desenvolvedor ideal para você!",
@@ -22,5 +22,5 @@ export function RandomMessage() {
     return () => clearInterval(interval);
   }, []);
 
-  return <p>{message}</p>;
+  return <p data-testid="random-message">{message}</p>;
 }

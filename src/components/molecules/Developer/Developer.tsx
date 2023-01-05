@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 
 import { Badge } from "flowbite-react";
+import { motion, Variants } from "framer-motion";
 
 import {
   Contract,
@@ -17,7 +18,17 @@ const BADGE_COLORS = {
   2: "warning",
   3: "purple",
 };
-export function Developer({ developer }: DeveloperProps) {
+
+const variants: Variants = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+  },
+};
+
+export function Developer({ developer, index }: DeveloperProps) {
   const seniority = developer.seniority ?? 1;
 
   const color =
@@ -28,7 +39,15 @@ export function Developer({ developer }: DeveloperProps) {
     [seniority]
   );
   return (
-    <article className="flex flex-col gap-5 bg-white rounded-sm shadow-sm p-5 w-full max-w-xs transition-all hover:shadow-md ">
+    <motion.article
+      className="flex flex-col gap-5 bg-white rounded-sm shadow-sm p-5 w-full max-w-xs transition-all hover:shadow-md"
+      variants={variants}
+      initial="hidden"
+      animate="visible"
+      transition={{
+        delay: 0.2 * index,
+      }}
+    >
       <header>
         <img
           src={developer.avatar_url}
@@ -53,6 +72,6 @@ export function Developer({ developer }: DeveloperProps) {
           linkedin={developer.linkedin}
         />
       </footer>
-    </article>
+    </motion.article>
   );
 }
