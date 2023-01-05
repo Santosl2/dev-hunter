@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 
 import party from "party-js";
 
-import { Developer } from "@/components/molecules";
+import { Developer } from "@/components/organisms";
 import { SEO } from "@/SEO";
 import { useFilters, useGetDevelopers } from "@/shared/hooks";
 
