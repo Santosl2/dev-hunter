@@ -4,8 +4,15 @@ import { FiltersStateKeys } from "@/shared/interfaces/states";
 import { CategoryObjectProps } from "../CategoryItem.types";
 
 export function useCategoryItem(id: number, type: FiltersStateKeys = "skills") {
-  const { addSkill, addSeniority, filters, removeCategory, removeSeniority } =
-    useFilters();
+  const {
+    addSkill,
+    addSeniority,
+    filters,
+    removeCategory,
+    removeSeniority,
+
+    ...rest
+  } = useFilters();
 
   const obj: CategoryObjectProps = {
     skills: {
@@ -19,9 +26,14 @@ export function useCategoryItem(id: number, type: FiltersStateKeys = "skills") {
       state: filters.seniorities,
     },
     contractTypes: {
-      addRegister: addSeniority,
-      removeRegister: removeSeniority,
-      state: filters.seniorities,
+      addRegister: rest.addContract,
+      removeRegister: rest.removeMobility,
+      state: filters.contractTypes,
+    },
+    mobilityTypes: {
+      addRegister: rest.addMobility,
+      removeRegister: rest.removeMobility,
+      state: filters.mobilityTypes,
     },
   };
 

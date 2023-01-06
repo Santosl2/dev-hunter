@@ -1,4 +1,8 @@
-import { Skills, Seniority } from "@/components/molecules/ChooseProfile//";
+import {
+  Skills,
+  Seniority,
+  Mobility,
+} from "@/components/molecules/ChooseProfile//";
 
 export function ChooseProfile() {
   return (
@@ -9,9 +13,18 @@ export function ChooseProfile() {
         </h2>
 
         <Skills />
+
         <hr />
 
         <Seniority />
+
+        <hr />
+
+        <h2 className="font-poppins text-xl md:text-4xl font-bold leading-[1.2] my-5">
+          E quanto a mobilidade?
+        </h2>
+
+        <Mobility />
       </div>
     </section>
   );

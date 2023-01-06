@@ -9,6 +9,7 @@ const initialState: FiltersStateProps = {
   skills: "",
   seniorities: "",
   contractTypes: "",
+  mobilityTypes: "",
 };
 
 const filtersSlice = createSlice({
@@ -17,6 +18,14 @@ const filtersSlice = createSlice({
   reducers: filtersReducer,
 });
 
-export const { addSkill, addSeniority, removeCategory, removeSeniority } =
-  filtersSlice.actions;
+export const {
+  addSkill,
+  addSeniority,
+  addContract,
+  addMobility,
+  removeContract,
+  removeMobility,
+  removeCategory,
+  removeSeniority,
+} = filtersSlice.actions;
 export const { reducer } = filtersSlice;

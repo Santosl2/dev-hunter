@@ -10,13 +10,14 @@ export type CategoryItemProps = CategoryItemColors & {
   title: string;
   image?: string;
   type?: FiltersStateKeys;
+  showImage?: boolean;
 };
 
 export type CategoryObjectProps = Record<
   FiltersStateKeys,
   {
-    addRegister: (id: number) => void;
-    removeRegister: (id: number) => void;
+    addRegister: (id: any) => void;
+    removeRegister: (id: any) => void;
     state: string | number;
   }
 >;

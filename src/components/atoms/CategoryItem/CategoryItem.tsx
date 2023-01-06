@@ -14,6 +14,7 @@ export function CategoryItem({
   image,
   $color = "red",
   type = "skills",
+  showImage = true,
 }: CategoryItemProps) {
   const firstLetter = title[0];
   const { handleCategoryClick, isSelected } = useCategoryItem(id, type);
@@ -30,9 +31,13 @@ export function CategoryItem({
           size={24}
         />
       )}
-      <CategoryItemFigure $color={$color} data-testid="category-figure-box">
-        {image ? <img src={image} alt="Category" /> : firstLetter}
-      </CategoryItemFigure>
+
+      {showImage && (
+        <CategoryItemFigure $color={$color} data-testid="category-figure-box">
+          {image ? <img src={image} alt="Category" /> : firstLetter}
+        </CategoryItemFigure>
+      )}
+
       <p className="text-slate-700 flex flex-col">{title}</p>
     </li>
   );

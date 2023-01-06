@@ -53,6 +53,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       linkedin,
       seniority,
       skills,
+      isPending: false,
     });
 
     await client.collection("users").updateOne(

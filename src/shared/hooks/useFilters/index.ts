@@ -7,6 +7,9 @@ import {
   addSeniority,
   removeCategory,
   removeSeniority,
+  removeMobility,
+  addContract,
+  addMobility,
 } from "@/shared/store/modules/filters";
 
 export function useFilters() {
@@ -20,6 +23,18 @@ export function useFilters() {
       },
       addSeniority: (id: number) => {
         dispatch(addSeniority(id));
+      },
+      addContract: (contract: string) => {
+        dispatch(addContract(contract));
+      },
+      addMobility: (contract: string) => {
+        dispatch(addMobility(contract));
+      },
+      removeContract: (mobility: string) => {
+        dispatch(removeMobility(mobility));
+      },
+      removeMobility: (mobility: string) => {
+        dispatch(removeMobility(mobility));
       },
       removeCategory: (id: number) => {
         dispatch(removeCategory(id));
