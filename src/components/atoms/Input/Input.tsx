@@ -40,10 +40,10 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
 
         <InputTW
           ref={ref}
-          {...props}
           $hasIcon={hasIcon}
           $hasError={hasError}
           onChange={handleChange}
+          {...props}
         />
       </div>
       {!!hasError && <ErrorMessage message={error} />}

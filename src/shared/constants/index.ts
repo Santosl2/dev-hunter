@@ -21,3 +21,8 @@ export const MOBILITY_TYPES = [
     label: "Híbrido",
   },
 ] as const;
+
+export const SUCCESS_BADGE_DATA = {
+  bgColor: "success",
+  size: "sm",
+};

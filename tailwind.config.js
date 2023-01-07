@@ -10,6 +10,7 @@ module.exports = {
     extend: {
       gridTemplateColumns: {
         "auto-1fr": "repeat(auto-fit, minmax(18rem, 1fr))",
+        "fill-1fr": "repeat(auto-fill, minmax(18rem, 1fr))",
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],

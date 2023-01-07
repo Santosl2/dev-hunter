@@ -1,38 +1,56 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 
 export const filtersReducer = {
-  addSkill: (state: any, action: PayloadAction<string>) => {
+  addSkill: (state: any, action: PayloadAction<number>) => {
     return {
       ...state,
-      skills: [...state.skills, action.payload],
+      skills: action.payload,
     };
   },
-  addSeniority: (state: any, action: PayloadAction<string>) => {
+  addSeniority: (state: any, action: PayloadAction<number>) => {
     return {
       ...state,
-      seniorities: [...state.seniorities, action.payload],
+      seniorities: action.payload,
+    };
+  },
+  addMobility: (state: any, action: PayloadAction<string>) => {
+    return {
+      ...state,
+      mobilityTypes: action.payload,
+    };
+  },
+  addContract: (state: any, action: PayloadAction<string>) => {
+    return {
+      ...state,
+      contractTypes: action.payload,
     };
   },
 
-  removeCategory: (state: any, action: PayloadAction<string>) => {
-    const newCategories = state.skills.filter(
-      (category: string) => category !== action.payload
-    );
-
+  removeCategory: (state: any) => {
     return {
       ...state,
-      skills: newCategories,
+      skills: 0,
     };
   },
 
-  removeSeniority: (state: any, action: PayloadAction<string>) => {
-    const newSeniority = state.skills.filter(
-      (seniority: string) => seniority !== action.payload
-    );
-
+  removeSeniority: (state: any) => {
     return {
       ...state,
-      seniorities: newSeniority,
+      seniorities: 0,
+    };
+  },
+
+  removeMobility: (state: any) => {
+    return {
+      ...state,
+      mobilityTypes: "",
+    };
+  },
+
+  removeContract: (state: any) => {
+    return {
+      ...state,
+      contractTypes: "",
     };
   },
 };

@@ -7,6 +7,10 @@ import {
   addSeniority,
   removeCategory,
   removeSeniority,
+  removeMobility,
+  addContract,
+  addMobility,
+  removeContract,
 } from "@/shared/store/modules/filters";
 
 export function useFilters() {
@@ -15,17 +19,29 @@ export function useFilters() {
 
   const actions = useMemo(
     () => ({
-      addSkill: (title: string) => {
-        dispatch(addSkill(title));
+      addSkill: (id: number) => {
+        dispatch(addSkill(id));
       },
-      addSeniority: (title: string) => {
-        dispatch(addSeniority(title));
+      addSeniority: (id: number) => {
+        dispatch(addSeniority(id));
       },
-      removeCategory: (title: string) => {
-        dispatch(removeCategory(title));
+      addContract: (contract: string) => {
+        dispatch(addContract(contract));
       },
-      removeSeniority: (title: string) => {
-        dispatch(removeSeniority(title));
+      addMobility: (contract: string) => {
+        dispatch(addMobility(contract));
+      },
+      removeContract: () => {
+        dispatch(removeContract());
+      },
+      removeMobility: () => {
+        dispatch(removeMobility());
+      },
+      removeCategory: () => {
+        dispatch(removeCategory());
+      },
+      removeSeniority: () => {
+        dispatch(removeSeniority());
       },
     }),
     [dispatch]

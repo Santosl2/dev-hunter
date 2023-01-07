@@ -50,25 +50,27 @@ describe("<StepOne/>", () => {
     });
   });
 
-  // it("should be able to select Skills and Seniority", async () => {
-  //   render();
+  it("should be able to select Skills and Seniority", async () => {
+    render();
 
-  //   const selects = screen.getAllByTestId("select");
+    const selects = screen.getAllByTestId("select");
 
-  //   const [skillsSelect, senioritySelect] = selects;
+    const [skillsSelect, senioritySelect] = selects;
 
-  //   fireEvent.change(skillsSelect, {
-  //     target: { value: SKILLS[0].title },
-  //   });
+    fireEvent.change(skillsSelect, {
+      target: { value: SKILLS[0].id },
+    });
 
-  //   fireEvent.change(senioritySelect, {
-  //     target: { value: SENIORITIES[0].title },
-  //   });
+    await act(async () => {
+      fireEvent.change(senioritySelect, {
+        target: { value: SENIORITIES[0].id },
+      });
+    });
 
-  //   const button = screen.getByText("Continuar");
+    const button = screen.getByText("Continuar");
 
-  //   expect(button).toBeEnabled();
-  // });
+    expect(button).toBeEnabled();
+  });
 
   describe("integrations", () => {
     it.todo("start integration tests");

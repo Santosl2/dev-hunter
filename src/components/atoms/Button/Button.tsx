@@ -13,7 +13,7 @@ function IconElement({
   pos: "right" | "left";
 }) {
   return (
-    <span className="mx-2">
+    <span>
       {React.cloneElement(icon, {
         size: 18,
         "data-testid": `icon-${pos}`,

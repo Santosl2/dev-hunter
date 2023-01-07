@@ -7,6 +7,7 @@ export function Skills() {
       {SKILLS.map((category) => (
         <CategoryItem
           key={category.id}
+          id={category.id}
           title={category.title}
           $color={category.color}
         />
