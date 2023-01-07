@@ -3,7 +3,7 @@ import { SKILLS } from "@/shared/constants/skills";
 import { customRender } from "@/shared/tests/customRender";
 import { fireEvent, screen } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
-import Home from ".";
+import Home from "../../pages";
 
 jest.mock("next/router", () => ({
   useRouter: () => ({
