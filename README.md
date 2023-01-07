@@ -1,42 +1,55 @@
-[![License: MIT](https://img.shields.io/badge/License-MIT-red.svg)](https://opensource.org/licenses/MIT)
-[![Next.JS](https://img.shields.io/badge/NextJS-blue)](https://nextjs.org/)
-[![React.js](https://img.shields.io/badge/-ReactJS-blue)](https://pt-br.reactjs.org/)
-[![Typescript](https://img.shields.io/badge/-Typescript-blue)](https://www.typescriptlang.org/)
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 
-<div align="center">
-    <h1 color="#ffff" >Boilerplate with Next JS, Typescript, ESlint, Prettier, Storybook, Testing Library, Styled Components and Husky</h1>
-    </br>
-</div>
+# Developer Finder
 
-- [Instalation](#instalation)
-- [Project Structure Recomendation](#project-structure-recomendation)
+Developer finder é um site, onde ao invés de os desenvolvedores irem atrás das empresas, as empresas vão atrás dos desenvolvedores.
 
-# <strong>Instalation</strong>
+## Stack utilizada
 
-Just clone this repo or use as a template and enjoy!
-</br>
+- [Next JS](https://nextjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Flowbite](https://flowbite.com/)
+- [React Redux](https://react-redux.js.org/)
+- [Next Auth](https://next-auth.js.org/)
+- [Styled-components](https://styled-components.com/)
+- [Tailwind Styled-components](https://www.npmjs.com/package/tailwind-styled-components)
+- [Framer Motion](https://www.framer.com/motion/)
+- [React Hook Form](https://react-hook-form.com/)
+- [Zod](https://github.com/colinhacks/zod)
+- [MongoDB](https://www.mongodb.com/)
 
-## Project Structure Recomendation
+## Rodando localmente
 
-- src
-  - components
-    - Button/
-      - Button.stories.tsx (Docs)
-      - Button.styles.(ts) (Styles)
-      - Button.tsx (Component)
-      - Button.types.tsx (Interface/Types)
-      - index.ts (Export Button.tsx)
-  - pages (all Pages)
-  - shared
-    - hooks
-      - use[Hook Name].ts (Ex.: useAuth.ts)
-      - index.ts (export all hooks)
-    - contexts
-      - [ContextName]Context.tsx (Ex.: AuthContext.tsx)
-    - services (API Call config)
-    - tests
-      - integration (Integration tests)
-      - unit (Unit Tests)
-      - utils (All utils to tests)
+Clone o projeto
 
-Thanks!
+```bash
+  git clone https://github.com/Santosl2/developer-finder
+```
+
+Entre no diretório do projeto
+
+```bash
+  cd my-project
+```
+
+Instale as dependências
+
+```bash
+  npm install
+```
+
+Inicie o servidor
+
+```bash
+  npm run dev
+```
+
+## Contribuindo
+
+Contribuições são sempre bem-vindas!
+
+Veja `CONTRIBUTING.md` para saber como começar.
+
+## Licença
+
+[MIT](https://choosealicense.com/licenses/mit/)
