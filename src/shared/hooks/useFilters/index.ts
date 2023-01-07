@@ -10,6 +10,7 @@ import {
   removeMobility,
   addContract,
   addMobility,
+  removeContract,
 } from "@/shared/store/modules/filters";
 
 export function useFilters() {
@@ -30,17 +31,17 @@ export function useFilters() {
       addMobility: (contract: string) => {
         dispatch(addMobility(contract));
       },
-      removeContract: (mobility: string) => {
-        dispatch(removeMobility(mobility));
+      removeContract: () => {
+        dispatch(removeContract());
       },
-      removeMobility: (mobility: string) => {
-        dispatch(removeMobility(mobility));
+      removeMobility: () => {
+        dispatch(removeMobility());
       },
-      removeCategory: (id: number) => {
-        dispatch(removeCategory(id));
+      removeCategory: () => {
+        dispatch(removeCategory());
       },
-      removeSeniority: (id: number) => {
-        dispatch(removeSeniority(id));
+      removeSeniority: () => {
+        dispatch(removeSeniority());
       },
     }),
     [dispatch]

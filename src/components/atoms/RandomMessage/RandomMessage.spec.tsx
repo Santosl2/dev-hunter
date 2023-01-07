@@ -1,5 +1,5 @@
 import { customRender } from "@/shared/tests/customRender";
-import { act, render, screen } from "@testing-library/react";
+import { act, screen } from "@testing-library/react";
 import { MESSAGES, RandomMessage } from "./RandomMessage";
 
 describe("<RandomMessage/>", () => {

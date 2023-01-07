@@ -6,7 +6,7 @@ export type CategoryItemColors = {
 };
 
 export type CategoryItemProps = CategoryItemColors & {
-  id: number;
+  id: number | string;
   title: string;
   image?: string;
   type?: FiltersStateKeys;
@@ -17,7 +17,7 @@ export type CategoryObjectProps = Record<
   FiltersStateKeys,
   {
     addRegister: (id: any) => void;
-    removeRegister: (id: any) => void;
+    removeRegister: () => void;
     state: string | number;
   }
 >;

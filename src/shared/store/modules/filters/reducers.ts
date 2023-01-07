@@ -26,28 +26,28 @@ export const filtersReducer = {
     };
   },
 
-  removeCategory: (state: any, action: PayloadAction<number>) => {
+  removeCategory: (state: any) => {
     return {
       ...state,
       skills: 0,
     };
   },
 
-  removeSeniority: (state: any, action: PayloadAction<number>) => {
+  removeSeniority: (state: any) => {
     return {
       ...state,
       seniorities: 0,
     };
   },
 
-  removeMobility: (state: any, action: PayloadAction<string>) => {
+  removeMobility: (state: any) => {
     return {
       ...state,
       mobilityTypes: "",
     };
   },
 
-  removeContract: (state: any, action: PayloadAction<string>) => {
+  removeContract: (state: any) => {
     return {
       ...state,
       contractTypes: "",

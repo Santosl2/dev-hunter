@@ -16,13 +16,18 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     developersSchema.parse(req);
 
     const client = await connectDB();
-    const { skills, seniorities } = req.query;
+    const { skills, seniorities, contractTypes } = req.query;
+
+    const regexContractType = contractTypes
+      ? RegExp(contractTypes as string, "i")
+      : /.*/;
 
     const data = await client
       .collection("user_info")
       .find({
         skills: RegExp(skills as string),
         seniority: Number(seniorities),
+        contract_type: regexContractType,
       })
       .toArray();
 

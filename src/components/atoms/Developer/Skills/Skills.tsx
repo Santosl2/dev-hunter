@@ -3,12 +3,12 @@ import { useCallback } from "react";
 import { Badge } from "flowbite-react";
 
 import { SKILLS } from "@/shared/constants/skills";
-import { useFilters } from "@/shared/hooks";
 
+import { useSelected } from "../hooks";
 import { SkillsProps } from "./Skills.types";
 
 export function Skills({ data }: SkillsProps) {
-  const { filters } = useFilters();
+  const verifyIfIsSelectedAndGetStyles = useSelected();
 
   const getSkillName = useCallback(
     (skill: number) =>
@@ -18,18 +18,6 @@ export function Skills({ data }: SkillsProps) {
     []
   );
 
-  const isSelectedFilterSkillData = (id: string) => {
-    const isSelectedFilterSkill = id === filters.skills.toString();
-
-    const bgColor = isSelectedFilterSkill ? "success" : "gray";
-    const size = isSelectedFilterSkill ? "sm" : "xs";
-
-    return {
-      bgColor,
-      size,
-    };
-  };
-
   if (!data) return null;
 
   return (
@@ -37,7 +25,10 @@ export function Skills({ data }: SkillsProps) {
       Habilidades ({data.length})
       <div className="flex gap-2">
         {data.map((skill) => {
-          const { bgColor, size } = isSelectedFilterSkillData(skill);
+          const { bgColor, size } = verifyIfIsSelectedAndGetStyles({
+            data: skill,
+            type: "skills",
+          });
 
           return (
             <Badge

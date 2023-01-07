@@ -28,6 +28,7 @@ describe("<Skills/>", () => {
           skills: SELECTED_ID,
           seniorities: "",
           contractTypes: "",
+          mobilityTypes: "",
         },
       },
     });

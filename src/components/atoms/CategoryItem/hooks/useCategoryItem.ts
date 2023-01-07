@@ -3,14 +3,16 @@ import { FiltersStateKeys } from "@/shared/interfaces/states";
 
 import { CategoryObjectProps } from "../CategoryItem.types";
 
-export function useCategoryItem(id: number, type: FiltersStateKeys = "skills") {
+export function useCategoryItem(
+  id: number | string,
+  type: FiltersStateKeys = "skills"
+) {
   const {
     addSkill,
     addSeniority,
     filters,
     removeCategory,
     removeSeniority,
-
     ...rest
   } = useFilters();
 
@@ -43,7 +45,7 @@ export function useCategoryItem(id: number, type: FiltersStateKeys = "skills") {
 
   const handleCategoryClick = () => {
     if (isSelected) {
-      removeRegister(id);
+      removeRegister();
       return;
     }
 

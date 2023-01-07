@@ -9,7 +9,7 @@ export function Mobility() {
     >
       {MOBILITY_TYPES.map((mobility, index) => (
         <CategoryItem
-          id={index}
+          id={mobility.value}
           key={mobility.value.toLocaleLowerCase()}
           title={mobility.label}
           $color="blue"
