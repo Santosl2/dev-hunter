@@ -27,7 +27,7 @@ describe("<StepThree/>", () => {
     expect(finishedButton).toBeDisabled();
   });
 
-  it("button must be enabled when user select your infoartions", async () => {
+  it("button must be enabled when user select your informations", async () => {
     render();
 
     const inputLinkedin = screen.getByPlaceholderText(

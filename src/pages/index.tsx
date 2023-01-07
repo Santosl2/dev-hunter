@@ -1,7 +1,12 @@
 import { GetServerSidePropsContext } from "next";
 import { getSession } from "next-auth/react";
 
-import { ChooseProfile, Home, MissingData } from "@/components";
+import {
+  ChooseProfile,
+  GoSearchDevelopers,
+  Home,
+  MissingData,
+} from "@/components";
 import { SEO } from "@/SEO";
 import { getUserInfo } from "@/shared/utils/getUserInfo";
 
@@ -20,6 +25,7 @@ export default function Page({
       <ChooseProfile />
 
       {hasPendingData && <MissingData />}
+      <GoSearchDevelopers />
     </>
   );
 }

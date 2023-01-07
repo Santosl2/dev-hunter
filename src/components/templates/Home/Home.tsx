@@ -4,10 +4,16 @@ import Image from "next/image";
 
 export function Home() {
   return (
-    <section className="bg-green-200 p-9 lg:p-14 relative mb-5">
+    <section
+      className="bg-green-200 p-9 lg:p-14 relative mb-5"
+      data-testid="hero"
+    >
       <div className="container mx-auto flex gap-5 justify-between items-center flex-col lg:flex-row">
         <div>
-          <h1 className="font-poppins text-xl md:text-5xl font-bold leading-[1.2]">
+          <h1
+            className="font-poppins text-xl md:text-5xl font-bold leading-[1.2]"
+            data-testid="hero-title"
+          >
             Encontre{" "}
             <span className="text-green-400 underline">desenvolvedores</span>{" "}
             <br /> que{" "}
@@ -27,6 +33,7 @@ export function Home() {
           width={1200}
           height={1200}
           quality={100}
+          data-testid="hero-image"
         />
       </div>
     </section>

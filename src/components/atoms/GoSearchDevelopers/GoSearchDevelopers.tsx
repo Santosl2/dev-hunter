@@ -12,8 +12,7 @@ export function GoSearchDevelopers() {
   const { filters } = useFilters();
   const router = useRouter();
 
-  if (!filters.skills || !filters.seniorities || router.pathname !== "/")
-    return null;
+  if (!filters.skills || !filters.seniorities) return null;
 
   return (
     <div
@@ -22,6 +21,7 @@ export function GoSearchDevelopers() {
         router.push("/results");
       }}
       role="button"
+      data-testid="go-search-developers"
     >
       <Button $variant="green" iconLeft={<BiCheck />}>
         Pronto! Faça a busca

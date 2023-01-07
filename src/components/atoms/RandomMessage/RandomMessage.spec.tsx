@@ -15,11 +15,13 @@ describe("<RandomMessage/>", () => {
     customRender(<RandomMessage />);
 
     await act(async () => {
-      jest.advanceTimersToNextTimer(8000);
+      jest.advanceTimersToNextTimer(10000);
     });
 
     expect(screen.getByTestId("random-message").textContent).not.toBe(
       MESSAGES[0]
     );
+
+    jest.useRealTimers();
   });
 });

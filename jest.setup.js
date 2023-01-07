@@ -6,11 +6,15 @@
 import "@testing-library/jest-dom/extend-expect";
 import { forwardRef } from "react";
 
+import { TextEncoder, TextDecoder } from "util";
+
 import { server } from "./mocks/msw";
 
 beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
+
+jest.mock("mongodb");
 
 jest.mock("react-select", () => {
   const mockedReSelect = ({ options, value, onChange, isMulti }, ref) => {
@@ -48,3 +52,6 @@ jest.mock("react-select", () => {
 
   return forwardRef(mockedReSelect);
 });
+
+global.TextEncoder = TextEncoder;
+global.TextDecoder = TextDecoder;
