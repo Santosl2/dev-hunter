@@ -8,6 +8,7 @@ import { SEO } from "@/SEO";
 import { useFilters, useGetDevelopers } from "@/shared/hooks";
 
 import { LoadingResults } from "./LoadingResults";
+import { NoResults } from "./NoResults";
 
 export function Results() {
   const { filters } = useFilters();
@@ -25,7 +26,7 @@ export function Results() {
   }, [isFetched, rows?.length]);
 
   if (isLoading && !rows?.length) return <LoadingResults />;
-  if (!rows?.length) return <p>Nenhum resultado encontrado</p>;
+  if (!rows?.length) return <NoResults />;
 
   return (
     <>
