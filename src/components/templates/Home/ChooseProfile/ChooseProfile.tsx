@@ -1,7 +1,10 @@
 import { useMemo } from "react";
 
 import { Select } from "@/components/atoms";
-import { Skills, Seniority } from "@/components/molecules/ChooseProfile//";
+import {
+  SkillsProfile,
+  SeniorityProfile,
+} from "@/components/molecules/ChooseProfile//";
 import { CONTRACT_TYPES } from "@/shared/constants";
 import { useFilters } from "@/shared/hooks";
 
@@ -40,11 +43,11 @@ export function ChooseProfile() {
           </div>
         </header>
 
-        <Skills />
+        <SkillsProfile />
 
         <hr />
 
-        <Seniority />
+        <SeniorityProfile />
       </div>
     </section>
   );

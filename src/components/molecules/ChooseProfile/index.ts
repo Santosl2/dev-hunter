@@ -1,3 +1,3 @@
-export * from "./Skills";
-export * from "./Seniority";
-export * from "./Mobility";
+export * from "./SkillsProfile";
+export * from "./SeniorityProfile";
+export * from "./MobilityProfile";

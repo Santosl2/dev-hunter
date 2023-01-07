@@ -1,7 +1,7 @@
 import { CategoryItem } from "@/components/atoms";
 import { SKILLS } from "@/shared/constants/skills";
 
-export function Skills() {
+export function SkillsProfile() {
   return (
     <ul className="grid grid-cols-auto-1fr gap-2" data-testid="skills-box">
       {SKILLS.map((category) => (

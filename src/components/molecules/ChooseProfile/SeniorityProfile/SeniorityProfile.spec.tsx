@@ -1,17 +1,17 @@
 import { customRender } from "@/shared/tests/customRender";
-import { Seniority } from "./Seniority";
+import { SeniorityProfile } from "./SeniorityProfile";
 import { screen } from "@testing-library/react";
 import { SENIORITIES } from "@/shared/constants/seniorities";
 
-describe("<Seniority/>", () => {
+describe("<SeniorityProfile/>", () => {
   it("should be able to render correctly", () => {
-    customRender(<Seniority />);
+    customRender(<SeniorityProfile />);
 
     expect(screen.getByTestId("seniority-box")).toBeInTheDocument();
   });
 
   it("should be able to render all Seniority item", () => {
-    customRender(<Seniority />);
+    customRender(<SeniorityProfile />);
 
     SENIORITIES.forEach((seniority) => {
       expect(screen.getByText(seniority.title)).toBeInTheDocument();

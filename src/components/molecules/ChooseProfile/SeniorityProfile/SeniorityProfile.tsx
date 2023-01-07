@@ -1,7 +1,7 @@
 import { CategoryItem } from "@/components/atoms";
 import { SENIORITIES } from "@/shared/constants/seniorities";
 
-export function Seniority() {
+export function SeniorityProfile() {
   return (
     <ul
       className="grid grid-cols-auto-1fr gap-2 mt-5"

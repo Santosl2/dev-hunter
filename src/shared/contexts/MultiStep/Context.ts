@@ -10,7 +10,7 @@ type MultiStepContextProps = {
   nextStep: () => void;
   prevStep: () => void;
 
-  insertStepStorage: (data: any) => boolean;
+  insertStepStorage: (data: any) => void;
   reset: () => void;
 };
 

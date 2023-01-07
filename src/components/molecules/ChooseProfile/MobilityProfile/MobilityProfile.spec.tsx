@@ -1,18 +1,18 @@
 import { customRender } from "@/shared/tests/customRender";
-import { Mobility } from "./Mobility";
+import { MobilityProfile } from "./MobilityProfile";
 import { screen } from "@testing-library/react";
 import { SENIORITIES } from "@/shared/constants/seniorities";
 import { MOBILITY_TYPES } from "@/shared/constants";
 
-describe("<Mobility/>", () => {
+describe("<MobilityProfile/>", () => {
   it("should be able to render correctly", () => {
-    customRender(<Mobility />);
+    customRender(<MobilityProfile />);
 
     expect(screen.getByTestId("mobility-box")).toBeInTheDocument();
   });
 
   it("should be able to render all Mobility item", () => {
-    customRender(<Mobility />);
+    customRender(<MobilityProfile />);
 
     MOBILITY_TYPES.forEach(({ label }) => {
       expect(screen.getByText(label)).toBeInTheDocument();

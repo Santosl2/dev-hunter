@@ -38,7 +38,7 @@ Instale as dependências
   npm install
 ```
 
-Inicie o servidor
+Configure seu .env e enicie o servidor
 
 ```bash
   npm run dev

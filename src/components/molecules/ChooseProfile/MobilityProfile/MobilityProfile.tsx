@@ -1,7 +1,7 @@
 import { CategoryItem } from "@/components/atoms";
 import { MOBILITY_TYPES } from "@/shared/constants";
 
-export function Mobility() {
+export function MobilityProfile() {
   return (
     <ul
       className="grid grid-cols-fill-1fr gap-2 mt-5"

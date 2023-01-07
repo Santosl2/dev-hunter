@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Suspense } from "react";
 
 import { Modal as ModalFlowbite } from "flowbite-react";
@@ -9,20 +10,26 @@ import { ModalEnumTypes } from "@/shared/constants/enums";
 import { useModals, useMultiStep } from "@/shared/hooks";
 
 const dynamicSteps = {
-  1: dynamic(() =>
-    import("../../../molecules/UserInfoMultiSteps/StepOne/StepOne").then(
-      (mod) => mod.StepOne
-    )
+  1: dynamic<any>(
+    () =>
+      import("../../../molecules/UserInfoMultiSteps/StepOne/StepOne").then(
+        (mod) => mod.StepOne
+      ),
+    { ssr: false }
   ),
-  2: dynamic(() =>
-    import("../../../molecules/UserInfoMultiSteps/StepTwo/StepTwo").then(
-      (mod) => mod.StepTwo
-    )
+  2: dynamic<any>(
+    () =>
+      import("../../../molecules/UserInfoMultiSteps/StepTwo/StepTwo").then(
+        (mod) => mod.StepTwo
+      ),
+    { ssr: false }
   ),
-  3: dynamic(() =>
-    import("../../../molecules/UserInfoMultiSteps/StepThree/StepThree").then(
-      (mod) => mod.StepThree
-    )
+  3: dynamic<any>(
+    () =>
+      import("../../../molecules/UserInfoMultiSteps/StepThree/StepThree").then(
+        (mod) => mod.StepThree
+      ),
+    { ssr: false }
   ),
 };
 

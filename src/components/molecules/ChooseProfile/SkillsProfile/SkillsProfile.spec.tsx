@@ -1,17 +1,17 @@
 import { customRender } from "@/shared/tests/customRender";
-import { Skills } from "./Skills";
+import { SkillsProfile } from "./SkillsProfile";
 import { screen } from "@testing-library/react";
 import { SKILLS } from "@/shared/constants/skills";
 
-describe("<Skills/>", () => {
+describe("<SkillsProfile/>", () => {
   it("should be able to render correctly", () => {
-    customRender(<Skills />);
+    customRender(<SkillsProfile />);
 
     expect(screen.getByTestId("skills-box")).toBeInTheDocument();
   });
 
   it("should be able to render all skills item", () => {
-    customRender(<Skills />);
+    customRender(<SkillsProfile />);
 
     SKILLS.forEach((skill) => {
       expect(screen.getByText(skill.title)).toBeInTheDocument();
