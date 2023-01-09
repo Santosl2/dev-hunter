@@ -46,12 +46,16 @@ export async function getServerSideProps({ req }: GetServerSidePropsContext) {
       };
     } catch {
       return {
-        props: {},
+        props: {
+          hasPendingData: false,
+        },
       };
     }
   }
 
   return {
-    props: {},
+    props: {
+      hasPendingData: false,
+    },
   };
 }

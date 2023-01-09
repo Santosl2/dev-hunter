@@ -5,6 +5,10 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import { BsCheck } from "react-icons/bs";
 
+import { motion } from "framer-motion";
+
+import { baseAnimationVariant } from "@/shared/variants";
+
 import { CategoryItemFigure } from "./CategoryItem.styles";
 import { CategoryItemProps } from "./CategoryItem.types";
 import { useCategoryItem } from "./hooks";
@@ -21,10 +25,14 @@ export function CategoryItem({
   const { handleCategoryClick, isSelected } = useCategoryItem(id, type);
 
   return (
-    <li
+    <motion.li
       className="bg-white flex items-center min-w-xs p-5 mb-5 gap-5 font-bold shadow-sm rounded-sm cursor-pointer transition-all relative hover:shadow-md hover:-translate-y-2"
       onClick={handleCategoryClick}
       data-testid="category-item"
+      variants={baseAnimationVariant}
+      animate="animate"
+      initial="initial"
+      transition={{ delay: 0.2 }}
     >
       {isSelected && (
         <BsCheck
@@ -41,6 +49,6 @@ export function CategoryItem({
       )}
 
       <p className="text-slate-700 flex flex-col">{title}</p>
-    </li>
+    </motion.li>
   );
 }

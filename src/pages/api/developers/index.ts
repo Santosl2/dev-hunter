@@ -4,13 +4,10 @@ import { ZodError } from "zod";
 
 import { connectDB } from "@/shared/lib/mongo";
 import { developersSchema } from "@/shared/schemas/api/developers.schema";
-import { delay } from "@/shared/utils";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method !== "GET")
     return res.status(405).json({ message: "Method not allowed" });
-
-  await delay(1200); // Simulate network latency
 
   try {
     developersSchema.parse(req);
