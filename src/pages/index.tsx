@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { GetServerSidePropsContext } from "next";
 import { getSession } from "next-auth/react";
 
@@ -9,6 +10,7 @@ import {
 } from "@/components";
 import { SEO } from "@/SEO";
 import { getUserInfo } from "@/shared/utils/getUserInfo";
+import { baseAnimationVariant } from "@/shared/variants";
 
 export default function Page({
   hasPendingData = true,
@@ -16,7 +18,12 @@ export default function Page({
   hasPendingData: boolean | undefined;
 }) {
   return (
-    <>
+    <motion.article
+      variants={baseAnimationVariant}
+      animate="animate"
+      exit="exit"
+      initial="initial"
+    >
       <SEO
         title="Home"
         description="Encontre os melhores perfis de desenvolvedores para a sua empresa"
@@ -26,7 +33,7 @@ export default function Page({
 
       {hasPendingData && <MissingData />}
       <GoSearchDevelopers />
-    </>
+    </motion.article>
   );
 }
 

@@ -16,13 +16,18 @@ import { MultiStepProvider } from "@/shared/contexts";
 import { queryClient } from "@/shared/services/queryClient";
 import { store } from "@/shared/store";
 
+import { AnimatePresence } from "framer-motion";
+
 function MyApp({ Component, pageProps, ...rest }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <Provider store={store}>
         <SessionProvider refetchOnWindowFocus={false}>
           <Header />
-          <Component {...pageProps} />
+
+          <AnimatePresence mode="wait">
+            <Component {...pageProps} key={rest.router.asPath} />
+          </AnimatePresence>
 
           <MultiStepProvider>
             <UserInfoMultiStepModal />
