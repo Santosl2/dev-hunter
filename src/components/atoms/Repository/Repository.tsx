@@ -3,7 +3,7 @@ import { AiOutlineGithub } from "react-icons/ai";
 
 import { motion } from "framer-motion";
 
-import { Repository } from "@/shared/interfaces/repositories";
+import { type Repository as RepositoryTypes } from "@/shared/interfaces/repositories";
 import { baseAnimationVariant } from "@/shared/variants";
 
 import { Button } from "../Button";
@@ -14,7 +14,7 @@ export function Repository({
   id,
   name,
   index,
-}: Repository) {
+}: RepositoryTypes) {
   return (
     <motion.div
       className="flex flex-col gap-5 bg-white w-full max-w-full md:max-w-lg shadow-sm p-5 transition-all hover:shadow-md justify-between"
@@ -25,6 +25,7 @@ export function Repository({
       transition={{
         delay: (index ?? 0) * 0.1,
       }}
+      data-testid="repository"
     >
       <h3>{name}</h3>
       <small>{description}</small>

@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-import { Repository } from "@/components/atoms/Repository/Repository";
+import { Repository } from "@/components/atoms";
 import { NoResults } from "@/components/templates/Results/NoResults";
 import { useFindUserRepos } from "@/shared/hooks";
 

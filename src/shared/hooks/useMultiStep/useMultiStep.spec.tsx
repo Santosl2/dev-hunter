@@ -18,6 +18,16 @@ describe("useMultiStep", () => {
       wrapper: MultiStepProvider,
     });
 
+  beforeAll(() => {
+    jest.spyOn(Storage.prototype, "setItem");
+
+    Storage.prototype.setItem = jest.fn(() => JSON.stringify(mockedSteps));
+  });
+
+  afterAll(() => {
+    jest.resetAllMocks();
+  });
+
   it("should be able to reset step", async () => {
     const { result } = render();
 
@@ -50,29 +60,19 @@ describe("useMultiStep", () => {
     expect(result.current.currentStep).toBe(1);
   });
 
-  it("should be able to validate schema and setStorage", async () => {
-    const jestMockedSetStorage = jest.fn();
-
-    jest.mock("@/shared/hooks/useLocalStorage", () => ({
-      useLocalStorage: () => ({
-        storage: mockedSteps,
-        setStorage: jest.fn(),
-      }),
-    }));
-
+  it("should be able to setStorage", async () => {
     const { result } = render();
 
     act(() => {
-      result.current.insertStepStorage();
+      result.current.insertStepStorage({});
     });
 
-    expect(jestMockedSetStorage);
+    expect(window.localStorage.setItem).toHaveBeenCalled();
 
     jest.resetAllMocks();
   });
 
   it("should be able go to correct Step when user has localStorage data", async () => {
-    jest.spyOn(Storage.prototype, "setItem");
     Storage.prototype.getItem = jest.fn(() => JSON.stringify(mockedSteps));
 
     const { result } = render();

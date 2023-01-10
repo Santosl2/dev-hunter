@@ -51,6 +51,7 @@ export function Developer({ developer, index }: DeveloperProps) {
       onClick={() =>
         router.push("/profile/[user]", `/profile/${developer.login}`)
       }
+      data-testid="developer"
     >
       <header>
         <img
