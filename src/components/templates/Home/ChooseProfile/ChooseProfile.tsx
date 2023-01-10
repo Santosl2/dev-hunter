@@ -23,9 +23,7 @@ export function ChooseProfile() {
     <section className="container mx-auto p-5" data-testid="choose-profile">
       <div className="flex flex-col py-5">
         <header className="flex justify-between flex-col md:flex-row mb-5 gap-2">
-          <h2 className="font-poppins text-xl md:text-4xl font-bold leading-[1.2]">
-            O que você precisa?
-          </h2>
+          <h2>O que você precisa?</h2>
 
           <div className="w-full md:w-56">
             <Select

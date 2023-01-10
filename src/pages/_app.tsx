@@ -17,6 +17,7 @@ import { queryClient } from "@/shared/services/queryClient";
 import { store } from "@/shared/store";
 
 import { AnimatePresence } from "framer-motion";
+import NextNProgress from "nextjs-progressbar";
 
 function MyApp({ Component, pageProps, ...rest }: AppProps) {
   return (
@@ -32,6 +33,13 @@ function MyApp({ Component, pageProps, ...rest }: AppProps) {
           <MultiStepProvider>
             <UserInfoMultiStepModal />
           </MultiStepProvider>
+          <NextNProgress
+            color="#033828"
+            startPosition={0.3}
+            stopDelayMs={200}
+            height={3}
+            showOnShallow
+          />
 
           <ReactQueryDevtools />
         </SessionProvider>

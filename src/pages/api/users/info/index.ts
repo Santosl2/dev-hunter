@@ -12,7 +12,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   try {
     const session = await getSession({ req });
-    const user = session?.user?.name;
+    const user = session?.login;
 
     if (!user) {
       return res.status(401).send("Unauthorized");
@@ -58,7 +58,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     await client.collection("users").updateOne(
       {
-        name: user,
+        login: user,
       },
       {
         $set: {

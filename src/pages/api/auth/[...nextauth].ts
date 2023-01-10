@@ -49,6 +49,7 @@ export const authOptions: AuthOptions = {
         return {
           ...session,
           id: userMongo!._id,
+          login: userMongo!.login,
         };
       }
 

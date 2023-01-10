@@ -40,9 +40,9 @@ export default function Page({
 export async function getServerSideProps({ req }: GetServerSidePropsContext) {
   const session = await getSession({ req });
 
-  if (session?.user?.name) {
+  if (session?.login) {
     try {
-      const data = await getUserInfo(session.user.name);
+      const data = await getUserInfo(session.login);
 
       const hasPendingData = data?.isPending ?? true;
 
