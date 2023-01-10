@@ -3,6 +3,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { getSession } from "next-auth/react";
 
+import { AuthSession } from "@/shared/interfaces/user";
 import { connectDB } from "@/shared/lib/mongo";
 import { apiUserInfoMultiStepSchema } from "@/shared/schemas/UserInfoMultiStep.schema";
 
@@ -11,7 +12,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(405).json({ message: "Method not allowed" });
 
   try {
-    const session = await getSession({ req });
+    const session = (await getSession({ req })) as unknown as AuthSession;
     const user = session?.login;
 
     if (!user) {
