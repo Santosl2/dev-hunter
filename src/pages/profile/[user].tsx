@@ -41,7 +41,7 @@ export default function Page({ developer }: { developer: User }) {
           </Button>
           <Developer developer={developer} index={1} />
         </div>
-        <Repositories user="santosl2" />
+        <Repositories user={developer.login} />
       </section>
     </motion.article>
   );
@@ -50,7 +50,7 @@ export default function Page({ developer }: { developer: User }) {
 export async function getStaticPaths() {
   return {
     paths: [],
-    fallback: "blocking",
+    fallback: true,
   };
 }
 
@@ -83,8 +83,9 @@ export async function getStaticProps({ params }: GetStaticPropsContext) {
     };
   } catch {
     return {
-      props: {
-        hasPendingData: false,
+      redirect: {
+        destination: "/",
+        permanent: false,
       },
     };
   }

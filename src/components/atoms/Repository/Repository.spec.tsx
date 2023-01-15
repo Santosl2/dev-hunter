@@ -3,6 +3,11 @@ import { customRender } from "@/shared/tests/customRender";
 import { Repository } from "./Repository";
 import { fireEvent, screen } from "@testing-library/react";
 
+Object.defineProperty(window, "open", {
+  writable: true,
+  value: jest.fn(),
+});
+
 describe("<Repository/>", () => {
   const mockedRepositoryData: RepositoryTypes = {
     description: "Test description",
@@ -10,16 +15,6 @@ describe("<Repository/>", () => {
     id: 8000,
     name: "Test name",
   };
-
-  let windowSpy: jest.SpyInstance;
-
-  beforeAll(() => {
-    windowSpy = jest.spyOn(window, "open");
-  });
-
-  afterAll(() => {
-    windowSpy.mockRestore();
-  });
 
   it("should be able to render correctly", () => {
     customRender(<Repository {...mockedRepositoryData} />);

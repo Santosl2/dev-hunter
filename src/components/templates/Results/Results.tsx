@@ -36,11 +36,11 @@ export function Results() {
     <>
       <SEO title={`${rows.length} resultados`} />
       <section className="container mx-auto p-5">
-        <div id="party" ref={partyRef} />
+        <div id="party" ref={partyRef} data-testid="party" />
         <div className="flex flex-col gap-5">
           <h1 className="text-4xl font-bold flex justify-between">
             Tivemos {rows.length} resultado(s)
-            <Button $variant="green" onClick={() => router.back()}>
+            <Button $variant="green" onClick={() => router.push("/")}>
               Voltar
             </Button>
           </h1>

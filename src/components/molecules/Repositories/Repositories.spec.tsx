@@ -20,8 +20,10 @@ describe("<Repositories/>", () => {
   it("should be able to render no results when user doesnt have repositories", async () => {
     server.use(...emptyHandlers);
 
-    const { debug } = customRender(<Repositories user="Test" />);
+    customRender(<Repositories user="Test" />);
 
-    expect(await screen.findByTestId("no-results")).toBeInTheDocument();
+    expect(
+      await screen.findByText("Usuário não possui repositórios ainda.")
+    ).toBeInTheDocument();
   });
 });

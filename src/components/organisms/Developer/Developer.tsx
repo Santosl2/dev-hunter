@@ -48,9 +48,10 @@ export function Developer({ developer, index }: DeveloperProps) {
       transition={{
         delay: 0.2 * index,
       }}
-      onClick={() =>
-        router.push("/profile/[user]", `/profile/${developer.login}`)
-      }
+      onClick={() => {
+        if (router.asPath !== `/profile/${developer.login}`)
+          router.push("/profile/[user]", `/profile/${developer.login}`);
+      }}
       data-testid="developer"
     >
       <header>

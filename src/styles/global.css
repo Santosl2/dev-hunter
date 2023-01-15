@@ -7,8 +7,7 @@ html {
   @apply bg-[#F6F7FA];
 }
 
-#react-select-2-input:focus,
-#react-select-2-input[type="text"]:focus {
+input[id*="react-select"]:focus {
   box-shadow: none !important;
   outline: none !important;
   border: none !important;

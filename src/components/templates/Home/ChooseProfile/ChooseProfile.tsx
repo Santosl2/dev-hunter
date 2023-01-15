@@ -5,17 +5,18 @@ import {
   SkillsProfile,
   SeniorityProfile,
 } from "@/components/molecules/ChooseProfile//";
-import { CONTRACT_TYPES } from "@/shared/constants";
+import { ALL_CONTRACT_OPTION, CONTRACT_TYPES } from "@/shared/constants";
 import { useFilters } from "@/shared/hooks";
 
-const OPTIONS = [...CONTRACT_TYPES, { label: "Todos", value: "0" }];
+const OPTIONS = [...CONTRACT_TYPES, ...ALL_CONTRACT_OPTION];
 
 export function ChooseProfile() {
   const { addContract, removeContract, filters } = useFilters();
+
   const defaultValue = useMemo(
     () =>
-      CONTRACT_TYPES.find(({ value }) => value === filters.contractTypes) ??
-      OPTIONS[1],
+      CONTRACT_TYPES.find(({ value }) => value === filters.contractTypes) ||
+      OPTIONS.at(-1),
     [filters]
   );
 
