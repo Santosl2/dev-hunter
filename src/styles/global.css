@@ -7,9 +7,25 @@ html {
   @apply bg-[#F6F7FA];
 }
 
-#react-select-2-input:focus,
-#react-select-2-input[type="text"]:focus {
+input[id*="react-select"]:focus {
   box-shadow: none !important;
   outline: none !important;
   border: none !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-poppins;
+}
+
+h3 {
+  @apply text-xl font-bold inline-flex items-center gap-2 text-gray-800;
+}
+
+h2 {
+  @apply text-xl md:text-4xl font-bold leading-[1.2];
 }

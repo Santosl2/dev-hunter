@@ -1,3 +1,4 @@
+import { Session } from "next-auth";
 import { z } from "zod";
 
 import { ContractsTypes, LocationTypes } from ".";
@@ -25,4 +26,8 @@ export type UserLocation = {
   country_name: string;
   city: string;
   state: string;
+};
+
+export type AuthSession = Session & {
+  login: string;
 };

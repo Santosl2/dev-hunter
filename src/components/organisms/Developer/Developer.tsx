@@ -2,6 +2,7 @@ import { useMemo } from "react";
 
 import { Badge } from "flowbite-react";
 import { motion, Variants } from "framer-motion";
+import { useRouter } from "next/router";
 
 import {
   Contract,
@@ -30,7 +31,7 @@ const variants: Variants = {
 
 export function Developer({ developer, index }: DeveloperProps) {
   const seniority = developer.seniority ?? 1;
-
+  const router = useRouter();
   const color =
     BADGE_COLORS[seniority as keyof typeof BADGE_COLORS] ?? BADGE_COLORS[1];
 
@@ -40,13 +41,18 @@ export function Developer({ developer, index }: DeveloperProps) {
   );
   return (
     <motion.article
-      className="flex flex-col gap-5 bg-white rounded-sm shadow-sm p-5 w-full max-w-xs transition-all hover:shadow-md"
+      className="flex flex-col gap-5 bg-white rounded-sm shadow-sm p-5 w-full max-w-full md:max-w-xs transition-all hover:shadow-md h-full cursor-pointer"
       variants={variants}
       initial="hidden"
       animate="visible"
       transition={{
         delay: 0.2 * index,
       }}
+      onClick={() => {
+        if (router.asPath !== `/profile/${developer.login}`)
+          router.push("/profile/[user]", `/profile/${developer.login}`);
+      }}
+      data-testid="developer"
     >
       <header>
         <img
@@ -55,9 +61,9 @@ export function Developer({ developer, index }: DeveloperProps) {
           className="rounded-full w-16 mb-5 mx-auto"
           data-testid="developer-avatar"
         />
-        <h2 className="text-xl font-bold inline-flex items-center gap-2">
+        <h3>
           {developer.name} <Badge color={color}>{seniorityTitle}</Badge>
-        </h2>
+        </h3>
       </header>
 
       <footer className="flex gap-5 flex-col" data-testid="developer-footer">

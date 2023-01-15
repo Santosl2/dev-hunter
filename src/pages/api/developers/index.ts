@@ -32,7 +32,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       const { _id, user, ...items } = item;
 
       const userData = await client.collection("users").findOne({
-        name: user,
+        login: user,
       });
 
       return {

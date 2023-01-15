@@ -17,7 +17,10 @@ afterAll(() => server.close());
 jest.mock("mongodb");
 
 jest.mock("react-select", () => {
-  const mockedReSelect = ({ options, value, onChange, isMulti }, ref) => {
+  const mockedReSelect = (
+    { options, value, onChange, defaultValue, isMulti },
+    ref
+  ) => {
     function handleChange(event) {
       const option = options.find(
         (op) => op.value.toString() === event.currentTarget.value
@@ -40,6 +43,7 @@ jest.mock("react-select", () => {
         value={value}
         onChange={handleChange}
         ref={ref}
+        defaultValue={defaultValue}
       >
         {options.map(({ label, value: optionValue }) => (
           <option key={optionValue} value={optionValue}>

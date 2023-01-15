@@ -42,6 +42,7 @@ export function MultiStepProvider({ children }: { children: React.ReactNode }) {
         [actualStep]: data,
       };
 
+      console.log(setStorage(newStorageData));
       setStorage(newStorageData);
     },
     [currentStep, setStorage, storage]

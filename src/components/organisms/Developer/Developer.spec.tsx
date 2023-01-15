@@ -1,7 +1,15 @@
 import { User } from "@/shared/interfaces/user";
 import { customRender } from "@/shared/tests/customRender";
-import { render, screen } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
 import { Developer } from "./Developer";
+
+const mockedPush = jest.fn();
+jest.mock("next/router", () => ({
+  useRouter: () => ({
+    push: mockedPush,
+    pathname: "/",
+  }),
+}));
 
 describe("<Developer/>", () => {
   const mockedDeveloper: User = {
@@ -55,5 +63,15 @@ describe("<Developer/>", () => {
     mockedDeveloper.mobility_type!.forEach((mobility) => {
       expect(screen.getByText(mobility)).toBeInTheDocument();
     });
+  });
+
+  it("must be call router.push when click in BOX", () => {
+    customRender(<Developer developer={mockedDeveloper} index={1} />);
+
+    const box = screen.getByTestId("developer");
+
+    fireEvent.click(box);
+
+    expect(mockedPush).toHaveBeenCalled();
   });
 });

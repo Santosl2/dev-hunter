@@ -1,6 +1,8 @@
 export const FILTERS_SLICE_NAME = "filters";
 export const MODALS_SLICE_NAME = "modals";
 
+export const ALL_CONTRACT_OPTION = [{ label: "Todos", value: "0" }];
+
 export const CONTRACT_TYPES = [
   { value: "PJ", label: "PJ" },
   { value: "CLT", label: "CLT" },
