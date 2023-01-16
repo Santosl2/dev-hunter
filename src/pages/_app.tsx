@@ -19,6 +19,9 @@ import { store } from "@/shared/store";
 import { AnimatePresence } from "framer-motion";
 import NextNProgress from "nextjs-progressbar";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function MyApp({ Component, pageProps, ...rest }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
@@ -33,6 +36,8 @@ function MyApp({ Component, pageProps, ...rest }: AppProps) {
           <MultiStepProvider>
             <UserInfoMultiStepModal />
           </MultiStepProvider>
+
+          <ToastContainer />
           <NextNProgress
             color="#033828"
             startPosition={0.3}

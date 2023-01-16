@@ -41,6 +41,7 @@ export function SEO({
       <meta name="msapplication-TileColor" content="#057A55" />
       <meta name="referrer" content="no-referrer-when-downgrade" />
       <meta name="google" content="notranslate" />
+
       <meta property="og:title" content={pageTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content={process.env.NEXT_PUBLIC_SITE_URL} />
@@ -53,8 +54,10 @@ export function SEO({
       <meta property="og:image:type" content="image/png" />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
+
       <meta name="twitter:title" content={pageTitle} />
       <meta name="twitter:card" content="summary_large_image" />
+      <meta property="twitter:url" content="process.env.NEXT_PUBLIC_SITE_URL" />
       <meta name="twitter:image" content={pageImage ?? undefined} />
       <meta name="twitter:image:src" content={pageImage ?? undefined} />
       <meta name="twitter:image:alt" content="Thumbnail" />

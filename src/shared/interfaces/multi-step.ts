@@ -15,6 +15,8 @@ export type StepThreeProps = {
   mobility_type: LocationTypes[];
 };
 
+export type StepsRequestProps = StepOneProps & StepTwoProps & StepThreeProps;
+
 export type LocalStorageSteps = {
   stepOne: StepOneProps;
   stepTwo: StepTwoProps;

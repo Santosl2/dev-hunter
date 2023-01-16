@@ -27,7 +27,7 @@ export default function Page({
     >
       <SEO
         title="Home"
-        description="Encontre os melhores perfis de desenvolvedores para a sua empresa"
+        description="Os melhores perfis de desenvolvedores para a sua empresa você encontra aqui!"
       />
       <Home />
       <ChooseProfile />

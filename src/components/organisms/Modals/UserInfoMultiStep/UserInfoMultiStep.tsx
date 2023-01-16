@@ -39,6 +39,8 @@ export function UserInfoMultiStep() {
   const { data } = useSession();
   const user = data?.user;
 
+  console.log(user);
+
   const canRenderModal =
     user?.name && actualModal.modalType === ModalEnumTypes.USER_INFO_MULTI_STEP;
 

@@ -1,5 +1,6 @@
 import { useCallback } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -44,7 +45,9 @@ export function useStepThree() {
 
         localStorage.removeItem(MULTI_STEP_STORAGE_KEY);
       } catch {
-        console.log("error");
+        toast.error(
+          "Erro ao inserir seus dados! Tente novamente mais tarde ou entre em contato."
+        );
       } finally {
         closeModal();
       }
