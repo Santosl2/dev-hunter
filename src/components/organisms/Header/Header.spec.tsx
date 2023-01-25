@@ -1,9 +1,10 @@
-import { ModalEnumTypes } from "@/shared/constants/enums";
-import { customRender } from "@/shared/tests/customRender";
-import { MOCKED_SESSION_USER } from "@/shared/tests/mock";
-import { act, fireEvent, screen } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
 import { signIn, signOut } from "next-auth/react";
 import Router from "next/router";
+
+import { customRender } from "@/shared/tests/customRender";
+import { MOCKED_SESSION_USER } from "@/shared/tests/mock";
+
 import { Header } from "./Header";
 
 jest.mock("next-auth/react", () => ({
@@ -76,8 +77,8 @@ describe("<Header/>", () => {
     expect(Router.push).toHaveBeenCalled();
   });
 
-  it("should be able to call openModal function when click in Config button", async () => {
-    const { store } = customRender(<Header />);
+  it("should be able to call router.push function when click in Config button", async () => {
+    customRender(<Header />);
 
     const configButton = screen.getByTestId("header-config-button");
 
@@ -85,9 +86,6 @@ describe("<Header/>", () => {
 
     fireEvent.click(configButton);
 
-    expect(store.getState().modals.modalType).toBe(
-      ModalEnumTypes.USER_INFO_MULTI_STEP
-    );
-    expect(store.getState().modals.isOpen).toBeTruthy();
+    expect(Router.push).toHaveBeenCalled();
   });
 });

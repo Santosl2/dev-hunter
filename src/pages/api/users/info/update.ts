@@ -4,47 +4,37 @@ import { Db } from "mongodb";
 import { NextApiRequest, NextApiResponse } from "next";
 import { getSession } from "next-auth/react";
 
-import { StepsRequestProps } from "@/shared/interfaces/multi-step";
-import { AuthSession } from "@/shared/interfaces/user";
+import { AuthSession, UpdateProfileData } from "@/shared/interfaces/user";
 import { connectDB } from "@/shared/lib/mongo";
-import { apiUserInfoMultiStepSchema } from "@/shared/schemas/UserInfoMultiStep.schema";
+import { UpdateProfileSchema } from "@/shared/schemas/UpdateProfile.schema";
 
-type StepsRequestPropsWithUser = StepsRequestProps & {
+type StepsRequestPropsWithUser = UpdateProfileData & {
   user: string;
 };
 
-const createData = async (client: Db, data: StepsRequestPropsWithUser) => {
+const updateData = async (client: Db, data: StepsRequestPropsWithUser) => {
   const {
     bio,
     linkedin,
-    seniority,
-    skills,
+
     mobility_type,
     contract_type,
     user,
   } = data;
 
-  const hasInfo = await client
-    .collection("user_info")
-    .find({
+  await client.collection("user_info").updateOne(
+    {
       user,
-    })
-    .limit(1)
-    .toArray();
-
-  if (hasInfo.length) {
-    throw new Error("Você já preencheu os seus dados.");
-  }
-
-  const userInfo = await client.collection("user_info").insertOne({
-    user,
-    mobility_type,
-    contract_type,
-    linkedin,
-    seniority,
-    skills,
-    isPending: false,
-  });
+    },
+    {
+      $set: {
+        mobility_type,
+        contract_type,
+        linkedin,
+        isPending: false,
+      },
+    }
+  );
 
   await client.collection("users").updateOne(
     {
@@ -57,7 +47,9 @@ const createData = async (client: Db, data: StepsRequestPropsWithUser) => {
     }
   );
 
-  return userInfo;
+  console.log(user);
+
+  return "";
 };
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
@@ -72,24 +64,24 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       return res.status(401).send("Unauthorized");
     }
 
-    const reqData = req.body as StepsRequestPropsWithUser;
+    const reqData = req.body as UpdateProfileData;
 
-    const { bio, linkedin, seniority, skills, mobility_type, contract_type } =
-      reqData;
+    const { bio, linkedin, mobility_type, contract_type } = reqData;
 
     const client = await connectDB();
 
-    if (req.method === "POST") {
-      await apiUserInfoMultiStepSchema.parseAsync({
+    if (req.method === "PUT") {
+      await UpdateProfileSchema.parseAsync({
         bio,
         mobility_type,
         contract_type,
         linkedin,
-        seniority,
-        skills,
       });
 
-      const updateResponse = await createData(client, reqData);
+      const updateResponse = await updateData(client, {
+        ...reqData,
+        user,
+      });
       return res.json({
         rows: updateResponse,
       });

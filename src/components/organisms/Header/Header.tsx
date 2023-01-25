@@ -12,23 +12,17 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import Router from "next/router";
 
 import { UserPicture } from "@/components/atoms";
-import { ModalEnumTypes } from "@/shared/constants/enums";
 import { useModals } from "@/shared/hooks";
 
 import { Button } from "../../atoms/Button/Button";
 
 export function Header() {
   const { openModal } = useModals();
-
   const { data } = useSession();
 
   const onSignIn = useCallback(() => {
     signIn("github");
   }, []);
-
-  const openModalConfig = () => {
-    openModal(ModalEnumTypes.USER_INFO_MULTI_STEP);
-  };
 
   return (
     <nav className="border-gray-200 px-2 sm:px-4 py-2.5 bg-green-600">
@@ -50,7 +44,7 @@ export function Header() {
 
               <BiCog
                 className="mr-4 cursor-pointer"
-                onClick={openModalConfig}
+                onClick={() => Router.push("/update-profile")}
                 data-testid="header-config-button"
               />
               <Button $variant="green" $size="sm" onClick={() => signOut()}>

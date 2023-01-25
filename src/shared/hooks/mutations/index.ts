@@ -1,2 +1,2 @@
 export * from "./useMutationCreateInfo";
-export * from "./useMutationGetDevelopers";
+export * from "./useMutationUpdateProfile";

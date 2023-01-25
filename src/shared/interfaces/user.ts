@@ -2,6 +2,7 @@ import { Session } from "next-auth";
 import { z } from "zod";
 
 import { ContractsTypes, LocationTypes } from ".";
+import { UpdateProfileSchema } from "../schemas/UpdateProfile.schema";
 import { apiUserInfoMultiStepSchema } from "../schemas/UserInfoMultiStep.schema";
 
 export type User = {
@@ -31,3 +32,5 @@ export type UserLocation = {
 export type AuthSession = Session & {
   login: string;
 };
+
+export type UpdateProfileData = z.infer<typeof UpdateProfileSchema>;

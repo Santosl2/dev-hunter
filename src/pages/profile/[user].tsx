@@ -1,3 +1,4 @@
+/* eslint-disable no-prototype-builtins */
 import { FiArrowLeft } from "react-icons/fi";
 
 import { motion } from "framer-motion";
@@ -69,7 +70,7 @@ export async function getStaticProps({ params }: GetStaticPropsContext) {
   try {
     const { data } = await api.get(`/developers/${user}`);
 
-    if (data.rows.login) {
+    if (data.rows.hasOwnProperty("login")) {
       return {
         props: {
           developer: data.rows,
