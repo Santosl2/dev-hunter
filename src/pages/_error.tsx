@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
+// @ts-nocheck
 /**
  * NOTE: This requires `@sentry/nextjs` version 7.3.0 or higher.
  *
