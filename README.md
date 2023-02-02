@@ -1,6 +1,6 @@
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 
-# Developer Finder
+  # Dev Hunter
 
 Developer finder é um site, onde ao invés de os desenvolvedores irem atrás das empresas, as empresas vão atrás dos desenvolvedores.
 
